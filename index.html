@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tim's resume</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <style>
+        * {
+            border: 0;
+        }
+
+        .resume {
+            width: 210mm;
+            height: 297mm;
+            margin: auto;
+            position: absolute;
+            left: 0;
+            right: 0;
+            color: #01aefb;
+            font-family: serif;
+            padding: 15px;
+            padding-left: 30px;
+            padding-top: 30px;
+            margin-bottom: 20px;
+            border: 1px solid grey;
+        }
+
+        h1,
+        h3 {
+            margin: 0;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        h3 {
+            margin-bottom: 15px;
+        }
+
+        .portrait {
+            position: absolute;
+            top: 55px;
+            right: 40px;
+            width: 150px;
+            height: 150px;
+            border-radius: 150px;
+        }
+
+        .profile {
+            margin-left: -34px;
+            height: 113px;
+        }
+
+        .info {
+            height: 30px;
+        }
+
+        .infoc {
+            float: left;
+            width: 70%;
+            border-top: 30px solid black;
+        }
+
+        .infoi {
+            float: left;
+            border-color: black transparent;
+            border-width: 0 30px 30px 0;
+            border-right-color: white;
+            border-style: solid;
+        }
+
+        .info1 {
+            height: 30px;
+        }
+
+        .infoc1 {
+            float: left;
+            width: 70%;
+            border-top: 30px solid black;
+        }
+
+        .infoi1 {
+            float: left;
+            border-color: transparent black;
+            border-width: 0 0 30px 30px;
+            border-bottom-color: white;
+            border-style: solid;
+        }
+
+        i {
+            display: inline-block;
+            margin-top: 10px;
+            margin-left: 30px
+        }
+
+        span {
+            color: white;
+        }
+
+        .content {
+            margin-top: 20px;
+        }
+
+        h2 {
+            font-family: -webkit-body;
+            margin: 0;
+            border-bottom: 2px solid;
+            width: 97px;
+            padding-bottom: 2px;
+            float: left;
+        }
+
+        .education {
+            margin-left: 50px;
+            float: left;
+            margin-top: 10px;
+            border-bottom: 2px solid;
+            padding-bottom: 5px;
+            width: 645px;
+        }
+
+        b {
+            margin-right: 50px;
+        }
+
+        .desc {
+            margin-left: 146px;
+            margin-right: 40px;
+            color: black;
+            font-weight: normal;
+            font-size: 15px;
+            font-family: -webkit-pictograph;
+            clear: both;
+        }
+
+        p {
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .title {
+            color: cadetblue;
+            font-size: large;
+            font-weight: bold;
+        }
+
+        .footer-line {
+            border-bottom: 10px solid;
+            background-color: #18aefb;
+            margin-left: -30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="resume">
+        <div class="header">
+            <h1>刘泽运</h1>
+            <h3>求职意向：程序员/前端工程师</h3>
+            <img src="./img/portrait.jpg" alt="portrait" class="portrait" />
+            <img src="./img/profile.jpg" alt="profile" class="profile" />
+            <div style="position: absolute;top: 135px;left: 5px;">
+                <i class="far fa-calendar-alt"></i>
+                <span style="margin-right: 32px;">生日：1993.08.04</span>
+                <i class="fas fa-phone-volume"></i>
+                <span>电话：18017424747</span>
+            </div>
+            <div style="position: absolute;top: 163px;left: 5px;">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>现居：上海—浦东新区</span>
+                <i class="far fa-envelope-open"></i>
+                <span>邮箱：liuzeyunqz@163.com</span>
+            </div>
+        </div>
+        <div class="content">
+            <div>
+                <h2>教育背景</h2>
+                <i class="fas fa-circle" style="position: absolute; top: 264px;left: 116px;font-size: small;"></i>
+                <div class="education">
+                    <b>2012.09-2016.06</b>
+                    <b>同济大学</b>
+                    <b>计算机科学与技术专业</b>
+                    <b>本科学历</b>
+                </div>
+                <div class="desc">
+                    <p>
+                        <span class="title">主修课程：</span>C++程序设计、数据结构、算法分析、计算机网络、 数据库等
+                    </p>
+                </div>
+            </div>
+            <div>
+                <h2>工作背景</h2>
+                <i class="fas fa-circle" style="position: absolute; top: 349px;left: 116px;font-size: small;"></i>
+                <div class="education">
+                    <b>2016.04-2017-05</b>
+                    <b>上海积成慧集信息技术有限公司</b>
+                    <b>前端工程师</b>
+                </div>
+                <div class="desc">
+                    <div style="padding-top: 10px;font-weight: bold;">
+                        <span class="title">项目名称：</span>供水、排水、现维等系统
+                    </div>
+                    <div style="margin-bottom: 3px;">
+                        <span class="title">主要技术：</span>H5、ArcGIS、Dojo、JQuery和Bootstrap</div>
+                    <div style="margin-bottom: 10px;line-height: 25px;">
+                        <span class="title">职责简述：</span>主要参与供水综合展示系统中部分模块的设计与实现并维护其他系统。 工作内容包括设计页面排版，符合用户操作体验。实现多组合条件的查找数据，以图表和根据数据的坐标信息在地图上进行撒点、定位及聚类等方式向用户展示数据。用户还可以在地图上进行测绘、打点、画面和横剖面等操作，计算对应地下供水设备的数据信息。
+                    </div>
+                    <div style="padding-bottom: 10px;line-height: 25px;">
+                        <span class="title">工作总结：</span>前端前期使用DOM原生接口，后面引入JQuery库，这种比较原始的方式能更直接的认识前端，同时能学习并掌握比较基础的知识。在此项目中技术没有太多限制，只要能实现功能，比较自由。
+                    </div>
+                </div>
+                <div class="education" style="margin-left: 147px;">
+                    <b>2017.06-至今</b>
+                    <b>花旗金融信息服务(中国)有限公司</b>
+                    <b>前端工程师</b>
+                </div>
+                <div class="desc">
+                    <div style="padding-top: 10px;font-weight: bold;">
+                        <span class="title">项目名称：</span>Client Insight CRM系统
+                    </div>
+                    <div style="margin-bottom: 3px;">
+                        <span class="title">主要技术：</span>Angular、KendoUI、Bootstrap和C#</div>
+                    <div style="margin-bottom: 10px;line-height: 25px;">
+                        <span class="title">职责简述：</span>主要参与MiFID II(欧盟金融工具市场指导)模块相关页面功能的开发与后期的维护，并维护其他模块。工作内容主要是开发Agreements创建和编辑的页面,展示Agreements详细信息和Agreement与Account，Contact之间的关联关系以及组合条件查询等功能，根据用户的权限做权限控制。主要使用Kendo的Grid组件，分页展示Agreements，并支持用户根据不同字段对数据做search、sort和filter等操作。后端的工作是写API，给C#加UT，提高覆盖率。
+                        MiFID II模块没活的时候，参与到其他项目中做一些小页面，比如用d3画图，做词云和写个小程序把SQL Server的数据同步到Mongo。后期主要参与到前端重构工作中，用高版本Angular重构一些页面。
+                    </div>
+                    <div style="padding-bottom: 10px;line-height: 25px;">
+                        <span class="title">工作总结：</span>在项目中接触的东西很多，尤其是Angular的几个版本都有项目在使用。在此期间，除了学习到许多技术上的知识，还学习到了大团队共同协作的工作方式、流程和规范。
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2>自我评价</h2>
+                <i class="fas fa-circle" style="position: absolute; top: 1007px;left: 116px;font-size: small;"></i>
+                <div class="education">
+                    <b>路漫漫其修远兮，吾将上下而求索</b>
+                </div>
+                <div class="desc">
+                    <ul style="padding:15px;list-style: circle;">
+                        <li>喜欢跑步，骑行，打篮球。</li>
+                        <li>工作认真负责，积极主动，抗压能力强。</li>
+                        <li>接受新东西快，热爱编程，喜欢探索技术。</li>
+                        <li>轻微代码洁癖，偏执代码优化。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer-line"></div>
+        </div>
+    </div>
+</body>
+
+</html>
