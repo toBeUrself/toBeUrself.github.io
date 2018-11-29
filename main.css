@@ -51,6 +51,7 @@ body {
     position: fixed;
     height: 40px;
     width: 100%;
+    border-bottom: 10px solid #e7e9d1;
 }
 
 #content {
