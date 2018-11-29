@@ -16,6 +16,7 @@ pre {
 body {
     overflow-y: scroll;
     background: #e7e9d1;
+    min-width: 1200px;
 }
 
 #progress {
@@ -57,6 +58,13 @@ body {
     width: 90%;
     margin: auto;
     padding-top: 50px;
+    min-width: 1200px;
+}
+
+@media screen and (max-width: 1200px) {
+    #content {
+        width: 100%;
+    }
 }
 
 #content::after {
