@@ -17,6 +17,7 @@ body {
     overflow-y: scroll;
     background: #e7e9d1;
     min-width: 1200px;
+    color: black;
 }
 
 #progress {
@@ -50,6 +51,8 @@ body {
     background-color: white;
     position: fixed;
     height: 40px;
+    line-height: 40px;
+    text-align: center;
     width: 100%;
     border-bottom: 10px solid #e7e9d1;
 }
