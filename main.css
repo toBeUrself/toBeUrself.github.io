@@ -1,0 +1,82 @@
+h1 {
+    border-bottom: 1px dashed lightgrey;
+    font-size: x-large;
+    padding-bottom: 5px;
+}
+
+pre {
+    background-color: #eae8e8;
+    border-radius: 3px;
+    font-size: 85%;
+    line-height: 1.45;
+    overflow: auto;
+    padding: 16px;
+}
+
+body {
+    overflow-y: scroll;
+    background: #e7e9d1;
+}
+
+#progress {
+    background-color: purple;
+    border-radius: 2px;
+    position: fixed;
+    height: 5px;
+    width: 0%;
+    z-index: 1;
+}
+
+#top {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    background: white;
+    border: 0;
+    color: black;
+    cursor: pointer;
+    padding: 2px 4px;
+    box-shadow: 1px -3px 5px 1px white;
+}
+
+#top:hover {
+    background-color: purple;
+    box-shadow: 1px -3px 5px 1px purple;
+    color: snow;
+}
+
+#header {
+    background-color: white;
+    position: fixed;
+    height: 40px;
+    width: 100%;
+}
+
+#content {
+    zoom: 1;
+    width: 90%;
+    margin: auto;
+    padding-top: 50px;
+}
+
+#content::after {
+    display: block;
+    clear: both;
+    content: "";
+    visibility: hidden;
+    height: 0
+}
+
+#main {
+    width: calc(100% - 630px);
+    background: white;
+    margin-left: 300px;
+    padding: 10px;
+}
+
+#right {
+    float: right;
+    width: 300px;
+    height: 1200px;
+    background: white;
+}
