@@ -1,0 +1,103 @@
+h1 {
+    border-bottom: 1px dashed lightgrey;
+    font-size: x-large;
+    padding-bottom: 5px;
+}
+.userInfo{
+    float: right;
+    margin-right: 20px;
+}
+#access_token{
+    width: 205px;
+    margin-top: 10px;
+    color: purple;
+}
+pre {
+    background-color: #eae8e8;
+    border-radius: 3px;
+    font-size: 85%;
+    line-height: 1.45;
+    overflow: auto;
+    padding: 16px;
+}
+
+body {
+    overflow-y: scroll;
+    background: #e7e9d1;
+    min-width: 1200px;
+    color: black;
+}
+
+#progress {
+    background-color: purple;
+    border-radius: 2px;
+    position: fixed;
+    height: 5px;
+    width: 0%;
+    z-index: 1;
+}
+
+#top {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    background: white;
+    border: 0;
+    color: black;
+    cursor: pointer;
+    padding: 2px 4px;
+    display: none;
+    box-shadow: 1px -3px 5px 1px white;
+}
+
+#top:hover {
+    background-color: purple;
+    box-shadow: 1px -3px 5px 1px purple;
+    color: snow;
+}
+
+#header {
+    background-color: white;
+    position: fixed;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    width: 100%;
+    border-bottom: 10px solid #e7e9d1;
+}
+
+#content {
+    zoom: 1;
+    width: 90%;
+    margin: auto;
+    padding-top: 50px;
+    min-width: 1200px;
+}
+
+@media screen and (max-width: 1200px) {
+    #content {
+        width: 100%;
+    }
+}
+
+#content::after {
+    display: block;
+    clear: both;
+    content: "";
+    visibility: hidden;
+    height: 0
+}
+
+#main {
+    width: calc(100% - 630px);
+    background: white;
+    margin-left: 300px;
+    padding: 10px;
+}
+
+#right {
+    float: right;
+    width: 300px;
+    height: 1200px;
+    background: white;
+}
