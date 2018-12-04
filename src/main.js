@@ -1,7 +1,8 @@
 import '../main.html';
 import './style.scss';
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.min'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
+import 'bootstrap/dist/js/bootstrap.min';
 import * as $ from 'jquery';
 import * as Popper from 'popper.js';
 import { UrlSet } from './Url_Set';
@@ -72,7 +73,7 @@ window.onload = function () {
     function createTreeBlogs(blogs, list) {
         blogs.forEach(blog => {
             if (blog.type === 'file') {
-                list.append(`<li><a href='#' data-url='${blog.download_url}'>${blog.name}</a></li>`);
+                list.append(`<li><a href='#' data-url='${blog.download_url}'>${blog.name.split('.')[0]}</a></li>`);
             } else {
                 const ul = $('<ul class="nested"></ul>');
                 const li = $(`<li><span class="caret">${blog.name}</span></li>`);

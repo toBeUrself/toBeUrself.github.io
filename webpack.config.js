@@ -2,7 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
     mode: 'development',
@@ -11,7 +12,8 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].bundle.js'
+        filename: '[name].bundle.js',
+        globalObject: "this"
     },
     module: {
         rules: [
@@ -26,22 +28,37 @@ module.exports = {
                 ]
             },
             {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                test: /\.(sa|sc|c)ss$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader',
+                ]
+            },
+            // {
+            //     test: /\.scss$/,
+            //     use: ['style-loader', 'css-loader', 'sass-loader'], // 编译顺序从右往左
+            //     exclude: /node_modules/
+            // },
+            {
+                test: /\.(ttf|eot|svg|woff|woff2|otf)$/,
+                use: 'url-loader'
             },
             {
-                test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader'], // 编译顺序从右往左
-                exclude: /node_modules/
+                test: /\.(png|jpg)$/,
+                loader: 'url-loader?limit=819200&name=img/[name].[ext]'
             }
         ]
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js']
+        extensions: ['.tsx', '.ts', '.js', '.scss']
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new webpack.HotModuleReplacementPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'styles.css'
+        }),
         new HtmlWebpackPlugin({
             title: 'Tims blogs',
             template: './main.html',
