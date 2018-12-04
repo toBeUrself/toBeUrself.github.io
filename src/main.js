@@ -78,24 +78,24 @@ window.onload = function () {
                 const li = $(`<li><span class="caret">${blog.name}</span></li>`);
                 li.append(ul);
                 list.append(li);
-                jqueryGet(blog.url).then(res => {
+                jqueryGet(blog.url + '&' + UrlSet.GithubInfo).then(res => {
                     createTreeBlogs(res, ul);
                 });
             }
         });
     }
 
-    jqueryGet(UrlSet.Default, 'text').then(page => {
+    jqueryGet(UrlSet.Default + '?' + UrlSet.GithubInfo, 'text').then(page => {
         document.getElementById('main').innerHTML = SHOWDOEN.makeHtml(page);
     });
 
-    jqueryGet(UrlSet.BlogRepo).then(blogs => {
+    jqueryGet(UrlSet.BlogRepo + '?' + UrlSet.GithubInfo).then(blogs => {
         const list = $('#blogList');
         createTreeBlogs(blogs, list);
         list.on('click', e => {
             const blogUrl = e.target.getAttribute('data-url');
             if (!blogUrl) return;
-            jqueryGet(blogUrl, 'text').then(res => {
+            jqueryGet(blogUrl + '?' + UrlSet.GithubInfo, 'text').then(res => {
                 document.getElementById('main').innerHTML = SHOWDOEN.makeHtml(res);
             });
         });
