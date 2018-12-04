@@ -3,10 +3,38 @@ h1 {
     font-size: x-large;
     padding-bottom: 5px;
 }
-.userInfo{
-    float: right;
-    margin-right: 20px;
+
+li{
+    list-style-type: none;
 }
+.caret {
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
+  }
+  
+  .caret::before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+  }
+  
+  .caret-down::before {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Safari */
+    transform: rotate(90deg);  
+  }
+  
+  .nested {
+    display: none;
+  }
+  
+  .active {
+    display: block;
+  }
 #access_token{
     width: 205px;
     margin-top: 10px;
@@ -23,18 +51,17 @@ pre {
 
 body {
     overflow-y: scroll;
-    background: #e7e9d1;
-    min-width: 1200px;
-    color: black;
+    padding-top: 4.5rem;
 }
 
 #progress {
     background-color: purple;
     border-radius: 2px;
     position: fixed;
+    top: 0;
     height: 5px;
     width: 0%;
-    z-index: 1;
+    z-index: 99999;
 }
 
 #top {
@@ -48,56 +75,11 @@ body {
     padding: 2px 4px;
     display: none;
     box-shadow: 1px -3px 5px 1px white;
+    z-index: 99999;
 }
 
 #top:hover {
     background-color: purple;
     box-shadow: 1px -3px 5px 1px purple;
     color: snow;
-}
-
-#header {
-    background-color: white;
-    position: fixed;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    width: 100%;
-    border-bottom: 10px solid #e7e9d1;
-}
-
-#content {
-    zoom: 1;
-    width: 90%;
-    margin: auto;
-    padding-top: 50px;
-    min-width: 1200px;
-}
-
-@media screen and (max-width: 1200px) {
-    #content {
-        width: 100%;
-    }
-}
-
-#content::after {
-    display: block;
-    clear: both;
-    content: "";
-    visibility: hidden;
-    height: 0
-}
-
-#main {
-    width: calc(100% - 630px);
-    background: white;
-    margin-left: 300px;
-    padding: 10px;
-}
-
-#right {
-    float: right;
-    width: 300px;
-    height: 1200px;
-    background: white;
 }
