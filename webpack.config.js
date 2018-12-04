@@ -3,10 +3,10 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCss = require('optimize-css-assets-webpack-plugin');
 const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
-    mode: 'development',
     entry: {
         main: './src/main.js'
     },
@@ -57,13 +57,32 @@ module.exports = {
         new CleanWebpackPlugin(['dist']),
         new webpack.HotModuleReplacementPlugin(),
         new MiniCssExtractPlugin({
-            filename: 'styles.css'
+            filename: 'styles.css',
+            chunkFilename: "[id].css"
         }),
         new HtmlWebpackPlugin({
             title: 'Tims blogs',
             template: './main.html',
             filename: './index.html',
-            chunks: ['main']
+            chunks: ['main'],
+            minify: {
+                minimize: true,
+                removeConments: true,
+                collapseWhitespace: true,
+                minifyCSS: true,
+                minifyJS: true,
+            }
+        }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            Proper: 'popper.js',
+        }),
+        new OptimizeCss({
+            cssProcessor: require('cssnano'), //引入cssnano配置压缩选项
+            cssProcessorOptions: {
+                discardComments: { removeAll: true }
+            },
+            canPrint: true //是否将插件信息打印到控制台
         }),
     ],
     devtool: "inline-source-map",

@@ -3,10 +3,10 @@ import './style.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap/dist/js/bootstrap.min';
-import * as $ from 'jquery';
-import * as Popper from 'popper.js';
+//import * as $ from 'jquery';
+//import * as Popper from 'popper.js';
 import { UrlSet } from './Url_Set';
-import { debug } from 'util';
+//import { debug } from 'util';
 
 function jqueryGet(url, type) {
     return new Promise(function (resolve) {
