@@ -9,12 +9,11 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const config = {
     entry: {
         main: './src/main.js',
-        vender: [/*'lodash',*/ 'jquery'] // 多个页面所需的公共库文件，防止重复打包带入
+        vender: ['jquery'],
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[hash].js',
-        globalObject: "this"
+        filename: '[name].[hash].js'
     },
     module: {
         rules: [
@@ -62,11 +61,11 @@ const config = {
         }),
         new webpack.ProvidePlugin({
             $: 'jquery',
-            _: 'lodash' //所有页面都会引入 _ 这个变量，不用再import引入
+            _: 'lodash', //所有页面都会引入 _ 这个变量，不用再import引入
         }),
         new MiniCssExtractPlugin({
-            filename: 'styles.[hash].css',
-            chunkFilename: "styles.[hash].css"
+            filename: 'style.[hash].css',
+            chunkFilename: "style.[hash].css"
         }),
     ],
     optimization: {
