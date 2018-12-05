@@ -4,9 +4,10 @@
   "description": "Tim的博客陈列房间",
   "main": "main.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --mode development --config webpack.dev.js",
+    "build": "webpack --mode production --config webpack.prod.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "node --inspect-brk ./node_modules/webpack/bin/webpack.js --inline --progress"
   },
   "repository": {
     "type": "git",
@@ -39,12 +40,18 @@
     "node-sass": "^4.10.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
+    "progress-bar-webpack-plugin": "^1.11.0",
+    "purify-css": "^1.2.5",
+    "purifycss-webpack": "^0.7.0",
     "raw-loader": "^0.5.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.26.1",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.4",
+    "webpack-parallel-uglify-plugin": "^1.1.0"
   }
 }

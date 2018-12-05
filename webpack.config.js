@@ -1,18 +1,19 @@
 const path = require('path');
 const webpack = require('webpack');
+const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCss = require('optimize-css-assets-webpack-plugin');
-const devMode = process.env.NODE_ENV !== 'production'
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = {
+const config = {
     entry: {
-        main: './src/main.js'
+        main: './src/main.js',
+        vender: [/*'lodash',*/ 'jquery'] // 多个页面所需的公共库文件，防止重复打包带入
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].bundle.js',
+        filename: '[name].[hash].js',
         globalObject: "this"
     },
     module: {
@@ -35,11 +36,6 @@ module.exports = {
                     'sass-loader',
                 ]
             },
-            // {
-            //     test: /\.scss$/,
-            //     use: ['style-loader', 'css-loader', 'sass-loader'], // 编译顺序从右往左
-            //     exclude: /node_modules/
-            // },
             {
                 test: /\.(ttf|eot|svg|woff|woff2|otf)$/,
                 use: 'url-loader'
@@ -51,48 +47,62 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js', '.scss']
+        extensions: ['.tsx', '.ts', '.js', '.scss'],
+        alias: {} //配置别名可以加快webpack查找模块的速度
     },
     plugins: [
+        new BundleAnalyzerPlugin({ analyzerPort: 8919 }),
         new CleanWebpackPlugin(['dist']),
         new webpack.HotModuleReplacementPlugin(),
-        new MiniCssExtractPlugin({
-            filename: 'styles.css',
-            chunkFilename: "[id].css"
-        }),
         new HtmlWebpackPlugin({
             title: 'Tims blogs',
             template: './main.html',
             filename: './index.html',
-            chunks: ['main'],
-            minify: {
-                minimize: true,
-                removeConments: true,
-                collapseWhitespace: true,
-                minifyCSS: true,
-                minifyJS: true,
-            }
+            chunks: ['main', 'vender']
         }),
         new webpack.ProvidePlugin({
             $: 'jquery',
-            Proper: 'popper.js',
+            _: 'lodash' //所有页面都会引入 _ 这个变量，不用再import引入
         }),
-        new OptimizeCss({
-            cssProcessor: require('cssnano'), //引入cssnano配置压缩选项
-            cssProcessorOptions: {
-                discardComments: { removeAll: true }
-            },
-            canPrint: true //是否将插件信息打印到控制台
+        new MiniCssExtractPlugin({
+            filename: 'styles.[hash].css',
+            chunkFilename: "styles.[hash].css"
         }),
     ],
-    devtool: "inline-source-map",
-    devServer: {
-        port: 4747,
-        hot: true,
-        hotOnly: true,
-        open: false,
-        compress: true,
-        historyApiFallback: true,
-        contentBase: path.join(__dirname, "dist")
+    optimization: {
+        splitChunks: {
+            chunks: 'async',
+            minSize: 30000,
+            minChunks: 1,
+            maxAsyncRequests: 5,
+            maxInitialRequests: 3,
+            automaticNameDelimiter: '~',
+            name: true,
+            cacheGroups: {
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true,
+                },
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10
+                },
+                vender: {
+                    chunks: 'initial', // 
+                    name: 'vender', // 入口的entry的key
+                    enforce: true   // 强制
+                },
+                main: {
+                    chunks: 'initial', // 
+                    name: 'main', // 入口的entry的key
+                    enforce: true   // 强制
+                }
+            }
+        }
     }
+};
+
+module.exports = function (defaultConfig) {
+    return merge(defaultConfig, config);
 };
