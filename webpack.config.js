@@ -1,10 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const config = {
     entry: {
@@ -13,7 +13,8 @@ const config = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[hash].js'
+        filename: '[name].[hash].js',
+        //publicPath: '/public'
     },
     module: {
         rules: [
@@ -50,7 +51,6 @@ const config = {
         alias: {} //配置别名可以加快webpack查找模块的速度
     },
     plugins: [
-        new BundleAnalyzerPlugin({ analyzerPort: 8919 }),
         new CleanWebpackPlugin(['dist']),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
@@ -67,6 +67,9 @@ const config = {
             filename: 'style.[hash].css',
             chunkFilename: "style.[hash].css"
         }),
+        new CopyWebpackPlugin([{
+            from: __dirname + '/public'
+        }])
     ],
     optimization: {
         splitChunks: {

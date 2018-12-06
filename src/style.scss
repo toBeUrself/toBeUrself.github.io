@@ -1,13 +1,15 @@
-h1 {
-    border-bottom: 1px dashed lightgrey;
-    font-size: x-large;
-    padding-bottom: 5px;
+.content {
+    h1{
+        line-height: 35px;
+    }
 }
-
-li{
-    list-style-type: none;
+.nested{ 
+    li{
+        a{
+            padding-left: 20px !important;
+        }
+    }
 }
-
 .caret {
     cursor: pointer;
     -webkit-user-select: none; /* Safari 3.1+ */
@@ -18,7 +20,7 @@ li{
   
   .caret::before {
     content: "\25B6";
-    color: black;
+    color: purple;
     display: inline-block;
     margin-right: 6px;
   }
@@ -41,19 +43,6 @@ li{
     margin-top: 10px;
     color: purple;
 }
-pre {
-    background-color: #eae8e8;
-    border-radius: 3px;
-    font-size: 85%;
-    line-height: 1.45;
-    overflow: auto;
-    padding: 16px;
-}
-
-body {
-    overflow-y: scroll;
-    padding-top: 4.5rem;
-}
 
 #progress {
     background-color: purple;
@@ -65,22 +54,16 @@ body {
     z-index: 99999;
 }
 
-#top {
-    position: fixed;
-    bottom: 30px;
-    right: 20px;
-    background: white;
-    border: 0;
-    color: black;
-    cursor: pointer;
-    padding: 2px 4px;
-    display: none;
-    box-shadow: 1px -3px 5px 1px white;
-    z-index: 99999;
+.span-dir {
+    display: inline-block;
+    height: 35px;
+    width: calc(100% - 10px);
+    line-height: 35px;
+    padding-left: 10px;
+    font-size: larger;
+    font-family: fantasy;
+    color: navajowhite;
 }
-
-#top:hover {
-    background-color: purple;
-    box-shadow: 1px -3px 5px 1px purple;
-    color: snow;
+.span-dir:hover{
+    background: #333;
 }
