@@ -30,7 +30,7 @@ window.onscroll = function () {
 }
 
 function setDefault() {
-    jqueryGet(UrlSet.Default + '?' + UrlSet.GithubInfo, 'text').then(page => {
+    jqueryGet(UrlSet.Default + '?' + UrlSet.GithubInfo + UrlSet.More, 'text').then(page => {
         document.getElementById('header').innerHTML = '我是谁，我在哪，我要去哪里';
         document.getElementById('content').innerHTML = SHOWDOEN.makeHtml(page);
     });
@@ -123,14 +123,14 @@ window.onload = function () {
                 const li = $(`<li class="pure-menu-item dir"><span class="span-dir caret">${blog.name}</span></li>`);
                 li.append(ul);
                 list.append(li);
-                jqueryGet(blog.url + '&' + UrlSet.GithubInfo).then(res => {
+                jqueryGet(blog.url + '&' + UrlSet.GithubInfo + UrlSet.More).then(res => {
                     createTreeBlogs(res, ul);
                 });
             }
         });
     }
 
-    jqueryGet(UrlSet.BlogRepo + '?' + UrlSet.GithubInfo).then(blogs => {
+    jqueryGet(UrlSet.BlogRepo + '?' + UrlSet.GithubInfo + UrlSet.More).then(blogs => {
         const list = $('#blogList');
         createTreeBlogs(blogs, list);
         list.on('click', e => {
@@ -139,7 +139,7 @@ window.onload = function () {
             if ($('#menuLink').css('display') === 'block') {
                 toggleAll(e);
             }
-            jqueryGet(blogUrl + '?' + UrlSet.GithubInfo, 'text').then(res => {
+            jqueryGet(blogUrl + '?' + UrlSet.GithubInfo + UrlSet.More, 'text').then(res => {
                 document.getElementById('header').innerHTML = e.target.innerText;
                 document.getElementById('content').innerHTML = SHOWDOEN.makeHtml(res);
             });
