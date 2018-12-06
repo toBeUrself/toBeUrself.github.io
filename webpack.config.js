@@ -68,7 +68,7 @@ const config = {
             chunkFilename: "style.[hash].css"
         }),
         new CopyWebpackPlugin([{
-            from: __dirname + '/public'
+            from: __dirname + '/css'
         }])
     ],
     optimization: {
