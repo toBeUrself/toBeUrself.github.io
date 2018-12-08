@@ -1,20 +1,18 @@
 const path = require('path');
 const webpack = require('webpack');
-const merge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const devMode = process.env.NODE_ENV !== 'production';
 
 const config = {
     entry: {
-        main: './src/main.js',
-        vender: ['jquery'],
+        main: './src/main.js'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[hash].js',
-        //publicPath: '/public'
+        filename: '[name].[hash].js'
     },
     module: {
         rules: [
@@ -31,7 +29,7 @@ const config = {
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                     'css-loader',
                     'sass-loader',
                 ]
@@ -60,15 +58,15 @@ const config = {
             chunks: ['main', 'vender']
         }),
         new webpack.ProvidePlugin({
-            $: 'jquery',
-            _: 'lodash', //所有页面都会引入 _ 这个变量，不用再import引入
+            $: 'jquery'
         }),
         new MiniCssExtractPlugin({
             filename: 'style.[hash].css',
             chunkFilename: "style.[hash].css"
         }),
         new CopyWebpackPlugin([{
-            from: __dirname + '/css'
+            from: __dirname + '/css',
+            to: __dirname + '/dist/css'
         }])
     ],
     optimization: {
@@ -91,12 +89,12 @@ const config = {
                     priority: -10
                 },
                 vender: {
-                    chunks: 'initial', // 
+                    chunks: 'all', // 
                     name: 'vender', // 入口的entry的key
                     enforce: true   // 强制
                 },
                 main: {
-                    chunks: 'initial', // 
+                    chunks: 'all', // 
                     name: 'main', // 入口的entry的key
                     enforce: true   // 强制
                 }
@@ -105,6 +103,7 @@ const config = {
     }
 };
 
-module.exports = function (defaultConfig) {
-    return merge(defaultConfig, config);
+module.exports = function () {
+    const prefix = devMode ? 'dev' : 'prod';
+    return require(`./webpack.${prefix}.js`)(config);
 };

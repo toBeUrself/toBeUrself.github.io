@@ -7,17 +7,17 @@ const config = {
     devServer: {
         port: 4747,
         hot: true,
-        hotOnly: true,
         open: true,
         compress: true,
         historyApiFallback: true,
         contentBase: path.join(__dirname, "dist")
     },
     plugins: [
+        new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
     ],
 };
 
-module.exports = function () {
-    return require("./webpack.config.js")(config);
+module.exports = function (defaultConfig) {
+    return merge(defaultConfig, config);
 };

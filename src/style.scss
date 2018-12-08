@@ -19,7 +19,7 @@
   }
   
   .caret::before {
-    content: "\25B6";
+    content: "\00BB";
     color: purple;
     display: inline-block;
     margin-right: 6px;
@@ -64,6 +64,24 @@
     font-family: fantasy;
     color: navajowhite;
 }
+
 .span-dir:hover{
     background: #333;
+}
+
+li{
+    span, a{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.poem {
+    float: left;
+    width: 100px;
+    line-height: 55px;
+    font-size: 55px;
+    font-family: cursive;
+    margin-bottom: 20px;
 }
