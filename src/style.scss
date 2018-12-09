@@ -102,3 +102,26 @@ table{
         border: 1px solid purple;
     }
 }
+
+pre{
+    background-color: bisque;
+    border-radius: 3px;
+    font-size: 85%;
+    line-height: 1.45;
+    overflow: auto;
+    padding: 16px;
+    code{
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+    }
+}
+
+p{
+    code{
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: bisque;
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+}

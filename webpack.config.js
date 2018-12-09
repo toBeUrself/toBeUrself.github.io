@@ -58,7 +58,14 @@ const config = {
             title: 'Tims blogs',
             template: './main.html',
             filename: './index.html',
-            chunks: ['main', 'vender']
+            chunks: ['main', 'vender'],
+            minify: {
+                removeAttributeQuotes: true, // 移除属性的引号
+                removeComments: true,
+                removeEmptyAttributes: true,
+                collapseWhitespace: true,
+                caseSensitive: false,
+            }
         }),
         new webpack.ProvidePlugin({
             $: 'jquery'
