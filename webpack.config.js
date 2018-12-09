@@ -19,7 +19,10 @@ const config = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                query: {
+                    presets: ['latest', 'env'] //按照最新的ES6语法规则去转换
+                }
             }, {
                 test: /\.(htm|html)$/,
                 use: [
@@ -80,13 +83,14 @@ const config = {
             name: true,
             cacheGroups: {
                 default: {
-                    minChunks: 2,
+                    minChunks: 1,
                     priority: -20,
                     reuseExistingChunk: true,
                 },
                 vendors: {
                     test: /[\\/]node_modules[\\/]/,
-                    priority: -10
+                    priority: -10,
+                    name: 'vender'
                 },
                 vender: {
                     chunks: 'all', // 

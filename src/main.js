@@ -1,7 +1,7 @@
 import '../main.html';
 import './style.scss';
 import { UrlSet } from './Url_Set';
-import { setInterval } from 'timers';
+import * as marked from 'marked';
 
 function jqueryGet(url, type) {
     return new Promise(function (resolve) {
@@ -63,8 +63,6 @@ function setDefault() {
     setWord();
 }
 window.onload = function () {
-    window.SHOWDOEN = new showdown.Converter();
-
     setDefault();
 
     $('#home').click(() => {
@@ -177,7 +175,7 @@ window.onload = function () {
             jqueryGet(blogUrl + '?' + UrlSet.GithubInfo + UrlSet.More, 'text').then(res => {
                 word = 999;
                 document.getElementById('header').innerHTML = e.target.innerText;
-                document.getElementById('content').innerHTML = SHOWDOEN.makeHtml(res);
+                document.getElementById('content').innerHTML = marked.parse(res);
             });
         });
         $('.dir').on('click', e => {

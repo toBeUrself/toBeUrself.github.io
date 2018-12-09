@@ -1,4 +1,5 @@
 .content {
+    color: black;
     h1{
         line-height: 35px;
     }
@@ -91,4 +92,13 @@ blockquote {
     color: #6a737d;
     padding: 0 1em;
     margin-left: 0;
+}
+
+table{
+    color: black;
+    th,td{
+        padding: 5px;
+        color: darkblue;
+        border: 1px solid purple;
+    }
 }
