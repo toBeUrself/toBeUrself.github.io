@@ -96,9 +96,12 @@ blockquote {
 
 table{
     color: black;
+    table-layout: fixed;
+    width: 100%;
     th,td{
         padding: 5px;
         color: darkblue;
+        word-break: break-all;
         border: 1px solid purple;
     }
 }
