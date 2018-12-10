@@ -2,6 +2,9 @@ import '../main.html';
 import './style.scss';
 import { UrlSet } from './Url_Set';
 import * as marked from 'marked';
+import 'highlight.js/styles/github.css'
+import hljs from 'highlight.js/lib/highlight';
+import javascript from 'highlight.js/lib/languages/javascript';
 
 function jqueryGet(url, type) {
     return new Promise(function (resolve) {
@@ -16,18 +19,14 @@ function jqueryGet(url, type) {
     });
 }
 
-// window.toTop = function () {
-//     document.documentElement.scrollTop = 0;
-// }
-
 window.onscroll = function () {
     const progress = (document.documentElement.scrollTop / (document.documentElement.offsetHeight - document.documentElement.clientHeight)) * 100 + '%';
     document.getElementById('progress').style.width = progress;
-    // if (document.documentElement.scrollTop > 0) {
-    //     $('#top').css('display', 'block');
-    // } else {
-    //     $('#top').css('display', 'none');
-    // }
+    if (document.documentElement.scrollTop > 0) {
+        $('#toTop').css('display', 'block');
+    } else {
+        $('#toTop').css('display', 'none');
+    }
 }
 
 
@@ -63,12 +62,38 @@ function setDefault() {
     setWord();
 }
 window.onload = function () {
+    hljs.registerLanguage('javascript', javascript);
+    marked.setOptions({
+        renderer: new marked.Renderer(),
+        highlight: function (code) {
+            return hljs.highlightAuto(code).value;
+        },
+        pedantic: false,
+        gfm: true,
+        tables: true,
+        breaks: false,
+        sanitize: false,
+        smartLists: true,
+        smartypants: false,
+        xhtml: false
+    });
     setDefault();
 
-    $('#home').click(() => {
+    $('#home').click((e) => {
         word = 0;
+        if ($('#menuLink').css('display') === 'block') {
+            toggleAll(e);
+        }
         $('#content').children().remove();
         setDefault();
+    });
+
+    $('#toTop').on('click', () => {
+        document.documentElement.scrollTop = 0;
+    });
+
+    $('#forkMe').on('click', () => {
+        window.open('https://github.com/toBeUrself/toBeUrself.github.io');
     });
 
     const layout = document.getElementById('layout');

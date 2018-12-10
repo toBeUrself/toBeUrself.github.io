@@ -1,3 +1,7 @@
+body{
+    background-color: #dbe4e4;
+}
+
 .content {
     color: black;
     h1{
@@ -10,6 +14,21 @@
             padding-left: 20px !important;
         }
     }
+}
+
+#toTop{
+    position: fixed;
+    right: 10px;
+    bottom: 20px;
+    z-index: 999;
+    border: 1px solid purple;
+    border-radius: 2px;
+    padding: 4px;
+    font-size: small;
+    color: white;
+    background-color: #FF9800;
+    cursor: pointer;
+    display: none;
 }
 .caret {
     cursor: pointer;
@@ -88,7 +107,7 @@ li{
 }
 
 blockquote {
-    border-left: .25em solid #dfe2e5;
+    border-left: .25em solid #607D8B;
     color: #6a737d;
     padding: 0 1em;
     margin-left: 0;
@@ -107,7 +126,7 @@ table{
 }
 
 pre{
-    background-color: bisque;
+    background-color: #e4d0d0;
     border-radius: 3px;
     font-size: 85%;
     line-height: 1.45;
@@ -121,10 +140,92 @@ pre{
 p{
     code{
         font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
-        background-color: bisque;
+        background-color: #e4d0d0;
         border-radius: 3px;
         font-size: 85%;
         margin: 0;
         padding: .2em .4em;
     }
 }
+
+#forkMe{
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 100000;
+}
+
+.snow-container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    top: 0;
+    overflow: hidden;
+    pointer-events: none;
+    background-color: transparent;
+  }
+  
+  .snow {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+    -webkit-animation: snow linear infinite;
+            animation: snow linear infinite;
+  }
+  .snow.foreground {
+    background-image: url("https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-large-075d267ecbc42e3564c8ed43516dd557.png");
+    -webkit-animation-duration: 15s;
+            animation-duration: 15s;
+  }
+  .snow.foreground.layered {
+    -webkit-animation-delay: 7.5s;
+            animation-delay: 7.5s;
+  }
+  .snow.middleground {
+    background-image: url(https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-medium-0b8a5e0732315b68e1f54185be7a1ad9.png);
+    -webkit-animation-duration: 20s;
+            animation-duration: 20s;
+  }
+  .snow.middleground.layered {
+    -webkit-animation-delay: 10s;
+            animation-delay: 10s;
+  }
+  .snow.background {
+    background-image: url(https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-small-1ecd03b1fce08c24e064ff8c0a72c519.png);
+    -webkit-animation-duration: 30s;
+            animation-duration: 30s;
+  }
+  .snow.background.layered {
+    -webkit-animation-delay: 15s;
+            animation-delay: 15s;
+  }
+  
+  @-webkit-keyframes snow {
+    0% {
+      -webkit-transform: translate3d(0, -100%, 0);
+              transform: translate3d(0, -100%, 0);
+    }
+    100% {
+      -webkit-transform: translate3d(15%, 100%, 0);
+              transform: translate3d(15%, 100%, 0);
+    }
+  }
+  
+  @keyframes snow {
+    0% {
+      -webkit-transform: translate3d(0, -100%, 0);
+              transform: translate3d(0, -100%, 0);
+    }
+    100% {
+      -webkit-transform: translate3d(15%, 100%, 0);
+              transform: translate3d(15%, 100%, 0);
+    }
+  }
