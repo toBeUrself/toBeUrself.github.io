@@ -3,10 +3,21 @@ body{
 }
 
 .content {
+    zoom: 1;
     color: black;
+    border-radius: 2px;
+    border: 1px solid purple;
+    box-shadow: 2px 2px 2px 2px purple;
     h1{
         line-height: 35px;
     }
+}
+.content::after{
+    display: block;
+    clear: both;
+    content: "";
+    visibility: hidden;
+    height: 0;
 }
 .nested{ 
     li{
