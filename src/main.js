@@ -45,6 +45,7 @@ function setDefault() {
     `.replace(/[\r\n]/g, "").replace(/\ +/g, "").trim().split('');
     let div = $('<div class="poem"></div>');
     $('#content').append(div);
+    $('#loading').css('display', 'none');
     const setWord = () => {
         setTimeout(() => {
             if (word >= content.length) {
@@ -62,6 +63,7 @@ function setDefault() {
     setWord();
 }
 window.onload = function () {
+    $('#loading').css('display', 'block');
     hljs.registerLanguage('javascript', javascript);
     marked.setOptions({
         renderer: new marked.Renderer(),
@@ -85,6 +87,7 @@ window.onload = function () {
             toggleAll(e);
         }
         $('#content').children().remove();
+        $('#loading').css('display', 'block');
         setDefault();
     });
 
@@ -194,6 +197,7 @@ window.onload = function () {
         list.on('click', e => {
             const blogUrl = e.target.getAttribute('data-url');
             if (!blogUrl) return;
+            $('#loading').css('display', 'block');
             if ($('#menuLink').css('display') === 'block') {
                 toggleAll(e);
             }
@@ -201,6 +205,7 @@ window.onload = function () {
                 word = 999;
                 document.getElementById('header').innerHTML = e.target.innerText;
                 document.getElementById('content').innerHTML = marked.parse(res);
+                $('#loading').css('display', 'none');
             });
         });
         $('.dir').on('click', e => {

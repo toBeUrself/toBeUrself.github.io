@@ -229,3 +229,14 @@ p{
               transform: translate3d(15%, 100%, 0);
     }
   }
+
+  #loading{
+      background-image: url(https://tobeurself.github.io/img/loading.gif);
+      background-repeat: no-repeat;
+      position: fixed;
+      top: 30%;
+      right: calc(50% - 5em);
+      width: 10em;
+      height: 10em;
+      display: block;
+  }
