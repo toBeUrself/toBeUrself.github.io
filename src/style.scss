@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #dbe4e4;
 }
 
@@ -8,26 +8,28 @@ body{
     border-radius: 2px;
     border: 1px solid purple;
     box-shadow: 2px 2px 2px 2px purple;
-    h1{
+    h1 {
         line-height: 35px;
     }
 }
-.content::after{
+
+.content::after {
     display: block;
     clear: both;
     content: "";
     visibility: hidden;
     height: 0;
 }
-.nested{ 
-    li{
-        a{
+
+.nested {
+    li {
+        a {
             padding-left: 20px !important;
         }
     }
 }
 
-#toTop{
+#toTop {
     position: fixed;
     right: 10px;
     bottom: 20px;
@@ -41,35 +43,42 @@ body{
     cursor: pointer;
     display: none;
 }
+
 .caret {
     cursor: pointer;
-    -webkit-user-select: none; /* Safari 3.1+ */
-    -moz-user-select: none; /* Firefox 2+ */
-    -ms-user-select: none; /* IE 10+ */
+    -webkit-user-select: none;
+    /* Safari 3.1+ */
+    -moz-user-select: none;
+    /* Firefox 2+ */
+    -ms-user-select: none;
+    /* IE 10+ */
     user-select: none;
-  }
-  
-  .caret::before {
+}
+
+.caret::before {
     content: "\00BB";
     color: purple;
     display: inline-block;
     margin-right: 6px;
-  }
-  
-  .caret-down::before {
-    -ms-transform: rotate(90deg); /* IE 9 */
-    -webkit-transform: rotate(90deg); /* Safari */
-    transform: rotate(90deg);  
-  }
-  
-  .nested {
+}
+
+.caret-down::before {
+    -ms-transform: rotate(90deg);
+    /* IE 9 */
+    -webkit-transform: rotate(90deg);
+    /* Safari */
+    transform: rotate(90deg);
+}
+
+.nested {
     display: none;
-  }
-  
-  .active {
+}
+
+.active {
     display: block;
-  }
-#access_token{
+}
+
+#access_token {
     width: 205px;
     margin-top: 10px;
     color: purple;
@@ -96,12 +105,13 @@ body{
     color: navajowhite;
 }
 
-.span-dir:hover{
+.span-dir:hover {
     background: #333;
 }
 
-li{
-    span, a{
+li {
+    span,
+    a {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -124,11 +134,12 @@ blockquote {
     margin-left: 0;
 }
 
-table{
+table {
     color: black;
     table-layout: fixed;
     width: 100%;
-    th,td{
+    th,
+    td {
         padding: 5px;
         color: darkblue;
         word-break: break-all;
@@ -136,30 +147,28 @@ table{
     }
 }
 
-pre{
+pre {
     background-color: #e4d0d0;
     border-radius: 3px;
     font-size: 85%;
     line-height: 1.45;
     overflow: auto;
     padding: 16px;
-    code{
-        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+    code {
+        font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
     }
 }
 
-p{
-    code{
-        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
-        background-color: #e4d0d0;
-        border-radius: 3px;
-        font-size: 85%;
-        margin: 0;
-        padding: .2em .4em;
-    }
+code {
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+    background-color: #e4d0d0;
+    border-radius: 3px;
+    font-size: 85%;
+    margin: 0;
+    padding: .2em .4em;
 }
 
-#forkMe{
+#forkMe {
     position: fixed;
     top: 0;
     right: 0;
@@ -175,9 +184,9 @@ p{
     overflow: hidden;
     pointer-events: none;
     background-color: transparent;
-  }
-  
-  .snow {
+}
+
+.snow {
     display: block;
     position: absolute;
     z-index: 2;
@@ -187,67 +196,73 @@ p{
     left: 0;
     pointer-events: none;
     -webkit-transform: translate3d(0, -100%, 0);
-            transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
     -webkit-animation: snow linear infinite;
-            animation: snow linear infinite;
-  }
-  .snow.foreground {
+    animation: snow linear infinite;
+}
+
+.snow.foreground {
     background-image: url("https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-large-075d267ecbc42e3564c8ed43516dd557.png");
     -webkit-animation-duration: 15s;
-            animation-duration: 15s;
-  }
-  .snow.foreground.layered {
+    animation-duration: 15s;
+}
+
+.snow.foreground.layered {
     -webkit-animation-delay: 7.5s;
-            animation-delay: 7.5s;
-  }
-  .snow.middleground {
+    animation-delay: 7.5s;
+}
+
+.snow.middleground {
     background-image: url(https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-medium-0b8a5e0732315b68e1f54185be7a1ad9.png);
     -webkit-animation-duration: 20s;
-            animation-duration: 20s;
-  }
-  .snow.middleground.layered {
+    animation-duration: 20s;
+}
+
+.snow.middleground.layered {
     -webkit-animation-delay: 10s;
-            animation-delay: 10s;
-  }
-  .snow.background {
+    animation-delay: 10s;
+}
+
+.snow.background {
     background-image: url(https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-small-1ecd03b1fce08c24e064ff8c0a72c519.png);
     -webkit-animation-duration: 30s;
-            animation-duration: 30s;
-  }
-  .snow.background.layered {
-    -webkit-animation-delay: 15s;
-            animation-delay: 15s;
-  }
-  
-  @-webkit-keyframes snow {
-    0% {
-      -webkit-transform: translate3d(0, -100%, 0);
-              transform: translate3d(0, -100%, 0);
-    }
-    100% {
-      -webkit-transform: translate3d(15%, 100%, 0);
-              transform: translate3d(15%, 100%, 0);
-    }
-  }
-  
-  @keyframes snow {
-    0% {
-      -webkit-transform: translate3d(0, -100%, 0);
-              transform: translate3d(0, -100%, 0);
-    }
-    100% {
-      -webkit-transform: translate3d(15%, 100%, 0);
-              transform: translate3d(15%, 100%, 0);
-    }
-  }
+    animation-duration: 30s;
+}
 
-  #loading{
-      background-image: url(https://tobeurself.github.io/img/loading.gif);
-      background-repeat: no-repeat;
-      position: fixed;
-      top: 30%;
-      right: calc(50% - 5em);
-      width: 10em;
-      height: 10em;
-      display: block;
-  }
+.snow.background.layered {
+    -webkit-animation-delay: 15s;
+    animation-delay: 15s;
+}
+
+@-webkit-keyframes snow {
+    0% {
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(15%, 100%, 0);
+        transform: translate3d(15%, 100%, 0);
+    }
+}
+
+@keyframes snow {
+    0% {
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(15%, 100%, 0);
+        transform: translate3d(15%, 100%, 0);
+    }
+}
+
+#loading {
+    background-image: url(https://tobeurself.github.io/img/loading.gif);
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 30%;
+    right: calc(50% - 5em);
+    width: 10em;
+    height: 10em;
+    display: block;
+}
