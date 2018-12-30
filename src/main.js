@@ -141,38 +141,6 @@ window.onload = function () {
             toggleAll(e);
         }
     };
-    // $('#login').attr('href', UrlSet.GithubAuth);
-    // if (localStorage.getItem('userName')) {
-    //     $('#login').css('display', 'none');
-    //     $('#header').append(`<span class="userInfo">欢迎&nbsp;&nbsp;<img style="width:20px;height: 20px;" src="${localStorage.getItem('userImg')}" /><span style='color: purple;'>${localStorage.getItem('userName')}</span></span>`);
-    // } else {
-    //     let code = '';
-    //     const href = window.location.href.split('?')[1];
-    //     if (href) {
-    //         code = href.split('=')[1]
-    //     }
-    //     if (code) {
-    //         const accessUrl = UrlSet.GithubAccess + code;
-    //         $('body').append(`<a id="access" href='${accessUrl}'><span id="getAccess"></span></a>`);
-    //         $('#getAccess').click();
-    //         $('body').remove('#access');
-    //         $('#login').css('display', 'none');
-    //         $('#header').append('<input class="userInfo" id="access_token" type="file" />');
-    //         $('#access_token').on('change', function (e) {
-    //             const fileReader = new FileReader();
-    //             fileReader.readAsText(e.target.files[0], 'utf-8');
-    //             fileReader.onload = function (token) {
-    //                 jqueryGet(UrlSet.GithubUserInfo + token.target.result).then(function (res) {
-    //                     localStorage.setItem('userName', res.name);
-    //                     localStorage.setItem('userImg', res.avatar_url);
-    //                     localStorage.setItem('userEmail', res.email);
-    //                     $('#access_token').css('display', 'none');
-    //                     $('#header').append(`<span class="userInfo">欢迎&nbsp;&nbsp;<img style="width:20px;height: 20px;" src="${res.avatar_url}" /><span style='color: purple;'>${res.name}</span></span>`);
-    //                 });
-    //             };
-    //         });
-    //     }
-    // }
 
     function createTreeBlogs(blogs, list) {
         blogs.forEach(blog => {
