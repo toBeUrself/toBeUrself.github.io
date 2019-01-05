@@ -2,7 +2,7 @@ import '../main.html';
 import './style.scss';
 import { UrlSet } from './Url_Set';
 import * as marked from 'marked';
-import 'highlight.js/styles/github.css'
+import 'highlight.js/styles/github.css';
 import hljs from 'highlight.js/lib/highlight';
 import javascript from 'highlight.js/lib/languages/javascript';
 
@@ -22,11 +22,6 @@ function jqueryGet(url, type) {
 window.onscroll = function () {
     const progress = (document.documentElement.scrollTop / (document.documentElement.offsetHeight - document.documentElement.clientHeight)) * 100 + '%';
     document.getElementById('progress').style.width = progress;
-    if (document.documentElement.scrollTop > 0) {
-        $('#toTop').css('display', 'block');
-    } else {
-        $('#toTop').css('display', 'none');
-    }
 }
 
 
@@ -93,6 +88,13 @@ window.onload = function () {
 
     $('#toTop').on('click', () => {
         document.documentElement.scrollTop = 0;
+        document.body.scrolltop = 0;
+    });
+
+    $('#snow').on('click', () => {
+        const snow = $('.snow-container');
+        const display = snow.css('display');
+        snow.css('display', display === 'block' ? 'none' : 'block');
     });
 
     $('#forkMe').on('click', () => {

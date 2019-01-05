@@ -29,21 +29,6 @@ body {
     }
 }
 
-#toTop {
-    position: fixed;
-    right: 10px;
-    bottom: 20px;
-    z-index: 999;
-    border: 1px solid purple;
-    border-radius: 2px;
-    padding: 4px;
-    font-size: small;
-    color: white;
-    background-color: #FF9800;
-    cursor: pointer;
-    display: none;
-}
-
 .caret {
     cursor: pointer;
     -webkit-user-select: none;
@@ -184,6 +169,7 @@ code {
     overflow: hidden;
     pointer-events: none;
     background-color: transparent;
+    display: none;
 }
 
 .snow {
@@ -265,4 +251,24 @@ code {
     width: 10em;
     height: 10em;
     display: block;
+}
+
+.btn-group {
+    position: fixed;
+    bottom: 30px;
+    right: 15px;
+    z-index: 100000;
+    a {
+        display: block;
+        text-decoration: none;
+        box-shadow: 0px 0px 0px 1px #007200;
+        background-color: mediumpurple;
+        color: white;
+        margin-bottom: 5px;
+        border-radius: 2px;
+    }
+    a:hover{
+        background-color: #007200;
+        box-shadow: 0px 0px 0px 1px purple;
+    }
 }
