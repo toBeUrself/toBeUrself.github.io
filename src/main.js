@@ -86,11 +86,6 @@ window.onload = function () {
         setDefault();
     });
 
-    $('#toTop').on('click', () => {
-        document.documentElement.scrollTop = 0;
-        document.body.scrolltop = 0;
-    });
-
     $('#snow').on('click', () => {
         const snow = $('.snow-container');
         const display = snow.css('display');
