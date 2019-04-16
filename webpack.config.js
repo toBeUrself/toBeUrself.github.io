@@ -77,6 +77,18 @@ const config = {
         new CopyWebpackPlugin([{
             from: __dirname + '/css',
             to: __dirname + '/dist/css'
+        }]),
+        new CopyWebpackPlugin([{
+            from: __dirname + '/my-sw.js',
+            to: __dirname + '/dist'
+        }]),
+        new CopyWebpackPlugin([{
+            from: __dirname + '/manifest.json',
+            to: __dirname + '/dist'
+        }]),
+        new CopyWebpackPlugin([{
+            from: __dirname + '/img',
+            to: __dirname + '/dist/img'
         }])
     ],
     optimization: {

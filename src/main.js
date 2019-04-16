@@ -57,7 +57,28 @@ function setDefault() {
     }
     setWord();
 }
+
+function registerSW() {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/my-sw.js').then(function (reg) {
+            console.log('Service Worker registered', reg);
+        }).catch(function (error) {
+            console.error('Error registering  Service  Worker', error);
+        });
+        navigator.serviceWorker.addEventListener('message', res => {
+            if (window.Notification) {
+                Notification.requestPermission();
+                new Notification("Hi Dear", {
+                    body: res.data,
+                    icon: '/img/app.png'
+                });
+            }
+        });
+    }
+}
+
 window.onload = function () {
+    registerSW();
     $('#loading').css('display', 'block');
     hljs.registerLanguage('javascript', javascript);
     marked.setOptions({
