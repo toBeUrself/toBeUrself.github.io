@@ -27,35 +27,10 @@ window.onscroll = function () {
 
 let word = 0;
 function setDefault() {
-    $('#header').text('把酒问月');
-    const content = `
-        青天有月来几时，我今停杯一问之
-        人攀明月不可得，月行却与人相随
-        皎如飞镜临丹阙，绿烟灭尽清辉发
-        但见宵从海上来，宁知晓向云间没
-        白兔捣药秋复春，嫦娥孤栖与谁邻
-        今人不见古时月，今月曾经照古人
-        古人今人若流水，共看明月皆如此
-        唯愿当歌对酒时，月光长照金樽里
-    `.replace(/[\r\n]/g, "").replace(/\ +/g, "").trim().split('');
-    let div = $('<div class="poem"></div>');
-    $('#content').append(div);
+    $('#header').text('Tim的三味屋');
+    let girl = $('<img class="poem" src="img/girl.jpeg"></div>');
+    $('#content').append(girl);
     $('#loading').css('display', 'none');
-    const setWord = () => {
-        setTimeout(() => {
-            if (word >= content.length) {
-                return;
-            }
-            div.text(div.text() + content[word]);
-            word++;
-            if (word != 0 && word % 15 === 0 && word !== content.length) {
-                div = $('<div class="poem"></div>');
-                $('#content').append(div);
-            }
-            setWord();
-        }, 200);
-    }
-    setWord();
 }
 
 function registerSW() {
@@ -105,6 +80,16 @@ window.onload = function () {
         $('#content').children().remove();
         $('#loading').css('display', 'block');
         setDefault();
+    });
+
+    $('#info').on('click', () => {
+        if (window.Notification) {
+            Notification.requestPermission();
+            new Notification("Hi Dear", {
+                body: '欢迎来到Tim的三味屋',
+                icon: '/img/app.png'
+            });
+        }
     });
 
     $('#snow').on('click', () => {
