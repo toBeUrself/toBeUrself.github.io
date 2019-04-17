@@ -24,11 +24,129 @@ window.onscroll = function () {
     document.getElementById('progress').style.width = progress;
 }
 
+function onAnimFrame(e) {
+    if (!rafPending) {
+        return;
+    }
 
-let word = 0;
+    var differenceInX = initialTouchPos.x - lastTouchPos.x;
+    if (differenceInX !== 0) {
+        toggleAll(e);
+    }
+
+    // var newXTransform = (currentXPosition - differenceInX) + 'px';
+    // var transformStyle = 'translateX(' + newXTransform + ')';
+    // swipeFrontElement.style.webkitTransform = transformStyle;
+    // swipeFrontElement.style.MozTransform = transformStyle;
+    // swipeFrontElement.style.msTransform = transformStyle;
+    // swipeFrontElement.style.transform = transformStyle;
+
+    rafPending = false;
+}
+
+function getGesturePointFromEvent(evt) {
+    var point = {};
+
+    if (evt.targetTouches) {
+        // Prefer Touch Events
+        point.x = evt.targetTouches[0].clientX;
+        point.y = evt.targetTouches[0].clientY;
+    } else {
+        // Either Mouse event or Pointer Event
+        point.x = evt.clientX;
+        point.y = evt.clientY;
+    }
+
+    return point;
+}
+
+let initialTouchPos;
+let lastTouchPos;
+let rafPending;
+function addTouch() {
+    // Handle the start of gestures
+    const handleGestureStart = function (evt) {
+        evt.preventDefault();
+
+        if (evt.touches && evt.touches.length > 1) {
+            return;
+        }
+
+        // Add the move and end listeners
+        if (window.PointerEvent) {
+            evt.target.setPointerCapture(evt.pointerId);
+        } else {
+            // Add Mouse Listeners
+            document.addEventListener('mousemove', handleGestureMove, true);
+            document.addEventListener('mouseup', handleGestureEnd, true);
+        }
+
+        initialTouchPos = getGesturePointFromEvent(evt);
+
+        // swipeFrontElement.style.transition = 'initial';
+    }
+    // Handle end gestures
+    const handleGestureEnd = function (evt) {
+        evt.preventDefault();
+
+        if (evt.touches && evt.touches.length > 0) {
+            return;
+        }
+
+        rafPending = false;
+
+        // Remove Event Listeners
+        if (window.PointerEvent) {
+            evt.target.releasePointerCapture(evt.pointerId);
+        } else {
+            // Remove Mouse Listeners
+            document.removeEventListener('mousemove', handleGestureMove, true);
+            document.removeEventListener('mouseup', handleGestureEnd, true);
+        }
+
+        initialTouchPos = null;
+    }
+
+    const handleGestureMove = function (evt) {
+        evt.preventDefault();
+
+        if (!initialTouchPos) {
+            return;
+        }
+
+        lastTouchPos = getGesturePointFromEvent(evt);
+
+        if (rafPending) {
+            return;
+        }
+
+        rafPending = true;
+
+        onAnimFrame(evt);
+    }
+
+    // Check if pointer events are supported.
+    if (window.PointerEvent) {
+        // Add Pointer Event Listener
+        document.addEventListener('pointerdown', handleGestureStart, true);
+        document.addEventListener('pointermove', handleGestureMove, true);
+        document.addEventListener('pointerup', handleGestureEnd, true);
+        document.addEventListener('pointercancel', handleGestureEnd, true);
+    } else {
+        // Add Touch Listener
+        document.addEventListener('touchstart', handleGestureStart, true);
+        document.addEventListener('touchmove', handleGestureMove, true);
+        document.addEventListener('touchend', handleGestureEnd, true);
+        document.addEventListener('touchcancel', handleGestureEnd, true);
+
+        // Add Mouse Listener
+        document.addEventListener('mousedown', handleGestureStart, true);
+    }
+}
+
 function setDefault() {
     $('#header').text('Tim的三味屋');
-    let girl = $('<img class="poem" src="img/girl.jpeg"></div>');
+    let girl = $('<img class="poem" src="/img/girl.jpeg"></div>');
     $('#content').append(girl);
     $('#loading').css('display', 'none');
 }
@@ -52,8 +170,37 @@ function registerSW() {
     }
 }
 
+function toggleClass(element, className) {
+    const classes = element.className.split(/\s+/);
+    let length = classes.length;
+    let i = 0;
+
+    for (; i < length; i++) {
+        if (classes[i] === className) {
+            classes.splice(i, 1);
+            break;
+        }
+    }
+    // The className is not found
+    if (length === classes.length) {
+        classes.push(className);
+    }
+
+    element.className = classes.join(' ');
+}
+
+function toggleAll(e) {
+    const active = 'active';
+
+    e.preventDefault();
+    toggleClass(layout, active);
+    toggleClass(menu, active);
+    toggleClass(menuLink, active);
+}
+
 window.onload = function () {
     registerSW();
+    addTouch();
     $('#loading').css('display', 'block');
     hljs.registerLanguage('javascript', javascript);
     marked.setOptions({
@@ -73,7 +220,6 @@ window.onload = function () {
     setDefault();
 
     $('#home').click((e) => {
-        word = 0;
         if ($('#menuLink').css('display') === 'block') {
             toggleAll(e);
         }
@@ -87,7 +233,7 @@ window.onload = function () {
             Notification.requestPermission();
             new Notification("Hi Dear", {
                 body: '欢迎来到Tim的三味屋',
-                icon: '/img/app.png'
+                icon: '/img/app-192.png'
             });
         }
     });
@@ -106,34 +252,6 @@ window.onload = function () {
     const menu = document.getElementById('menu');
     const menuLink = document.getElementById('menuLink');
     const content = document.getElementById('main');
-
-    function toggleClass(element, className) {
-        const classes = element.className.split(/\s+/);
-        let length = classes.length;
-        let i = 0;
-
-        for (; i < length; i++) {
-            if (classes[i] === className) {
-                classes.splice(i, 1);
-                break;
-            }
-        }
-        // The className is not found
-        if (length === classes.length) {
-            classes.push(className);
-        }
-
-        element.className = classes.join(' ');
-    }
-
-    function toggleAll(e) {
-        const active = 'active';
-
-        e.preventDefault();
-        toggleClass(layout, active);
-        toggleClass(menu, active);
-        toggleClass(menuLink, active);
-    }
 
     menuLink.onclick = function (e) {
         toggleAll(e);
@@ -169,11 +287,9 @@ window.onload = function () {
             const blogUrl = e.target.getAttribute('data-url');
             if (!blogUrl) return;
             $('#loading').css('display', 'block');
-            if ($('#menuLink').css('display') === 'block') {
-                toggleAll(e);
-            }
+            toggleAll(e);
+            $('#toTop')[0].click();
             jqueryGet(blogUrl + '?' + UrlSet.GithubInfo + UrlSet.More, 'text').then(res => {
-                word = 999;
                 document.getElementById('header').innerHTML = e.target.innerText;
                 document.getElementById('content').innerHTML = marked.parse(res);
                 $('#loading').css('display', 'none');
