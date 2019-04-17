@@ -4,6 +4,7 @@ var cacheName = 'tim-blog';
 var filesToCache = [
   '/*.css',
   '/*.js',
+  '/*.gz',
   '/img/*',
   '/index.html',
   '/manifest.json',
