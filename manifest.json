@@ -3,7 +3,8 @@
   "short_name": "Tim",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "aliceblue",
+  "theme_color": "purple",
+  "background_color": "purple",
   "description": "A simply readable blog app.",
   "icons": [
     {
@@ -32,6 +33,5 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "purple",
   "scope": "/"
 }
