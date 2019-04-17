@@ -7,7 +7,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 var config = {
     devtool: "source-map",
     plugins: [
-        new BundleAnalyzerPlugin({ analyzerPort: 8919 }),
+        // new BundleAnalyzerPlugin({ analyzerPort: 8919 }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
