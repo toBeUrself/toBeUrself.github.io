@@ -7,6 +7,7 @@ var filesToCache = [
   '/main.d787fa5e492ef63cf94b.js',
   '/index.html',
   '/manifest.json',
+  '/my-sw.js'
 ];
 
 self.addEventListener('install', function(e) {
