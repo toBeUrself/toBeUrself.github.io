@@ -5,8 +5,8 @@ var filesToCache = [
   '/*.css',
   '/*.js',
   '/img/*',
-  '/index.html’,
-  '/manifest.json’,
+  '/index.html',
+  '/manifest.json',
 ];
 
 self.addEventListener('install', function(e) {
