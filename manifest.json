@@ -19,11 +19,19 @@
         "type": "image/png"
       }, {
         "src": "img/app.png",
+        "sizes": "120x120",
+        "type": "image/png"
+      }, {
+        "src": "img/app.png",
         "sizes": "144x144",
         "type": "image/png"
       }, {
         "src": "img/app.png",
         "sizes": "168x168",
+        "type": "image/png"
+      }, {
+        "src": "img/app.png",
+        "sizes": "180x180",
         "type": "image/png"
       }, {
         "src": "img/app.png",
