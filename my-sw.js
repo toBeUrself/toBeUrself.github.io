@@ -24,10 +24,10 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(
-        cacheNames.map(function(cacheName) {
+        cacheNames.map(function(cachedName) {
           // 如果当前版本和缓存版本不一致
-          if (cacheName !== VERSION) {
-            return caches.delete(cacheName);
+          if (cachedName !== cacheName) {
+            return caches.delete(cachedName);
           }
         })
       );
