@@ -1,6 +1,6 @@
 'use strict';
 
-var cacheName = 'tim-blog-02';
+var cacheName = 'tim-blog-03';
 var filesToCache = [
   '/',
   '/main.3204ddfa85b3516527c0.js',
