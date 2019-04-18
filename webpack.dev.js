@@ -10,7 +10,7 @@ const config = {
         open: true,
         compress: true,
         historyApiFallback: true,
-        contentBase: path.join(__dirname, "dist")
+        contentBase: path.join(__dirname, "dist/blog")
     },
     plugins: [
         new webpack.NamedModulesPlugin(),

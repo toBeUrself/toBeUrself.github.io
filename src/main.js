@@ -153,7 +153,7 @@ function setDefault() {
 
 function registerSW() {
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/my-sw.js').then(function (reg) {
+        navigator.serviceWorker.register('../my-sw.js').then(function (reg) {
             console.log('Service Worker registered', reg);
         }).catch(function (error) {
             console.error('Error registering  Service  Worker', error);
