@@ -11,7 +11,7 @@ const config = {
         main: './src/main.js'
     },
     output: {
-        path: path.resolve(__dirname, 'dist/blog/src'),
+        path: path.resolve(__dirname, 'dist'),
         filename: '[name].[hash].js'
     },
     module: {
@@ -57,7 +57,7 @@ const config = {
         new HtmlWebpackPlugin({
             title: 'Tims blogs',
             template: './main.html',
-            filename: '../index.html',
+            filename: './index.html',
             chunks: ['main', 'vender'],
             minify: {
                 removeAttributeQuotes: true, // 移除属性的引号
@@ -76,19 +76,19 @@ const config = {
         }),
         new CopyWebpackPlugin([{
             from: __dirname + '/css',
-            to: __dirname + '/dist/blog/css'
+            to: __dirname + '/dist/css'
         }]),
         new CopyWebpackPlugin([{
             from: __dirname + '/my-sw.js',
-            to: __dirname + '/dist/blog'
+            to: __dirname + '/dist'
         }]),
         new CopyWebpackPlugin([{
             from: __dirname + '/manifest.json',
-            to: __dirname + '/dist/blog'
+            to: __dirname + '/dist'
         }]),
         new CopyWebpackPlugin([{
             from: __dirname + '/img',
-            to: __dirname + '/dist/blog/img'
+            to: __dirname + '/dist/img'
         }])
     ],
     optimization: {

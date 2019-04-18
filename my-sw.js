@@ -3,8 +3,9 @@
 var cacheName = 'tim-blog-02';
 var filesToCache = [
   '/',
-  '/src/*.js',
-  '/src/*.css',
+  '/main.3204ddfa85b3516527c0.js',
+  '/vender.3204ddfa85b3516527c0.js',
+  '/style.3204ddfa85b3516527c0.css',
   '/manifest.json',
   '/my-sw.js'
 ];
