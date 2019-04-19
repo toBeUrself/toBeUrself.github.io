@@ -1,7 +1,7 @@
 {
   "name": "Tim's Blog",
   "short_name": "Tim",
-  "start_url": "/",
+  "start_url": "/?utm_source=homescreen",
   "display": "standalone",
   "theme_color": "purple",
   "background_color": "purple",
