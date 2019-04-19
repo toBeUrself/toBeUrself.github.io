@@ -127,6 +127,7 @@ window.onload = function () {
     registerSW();
     if (IsPhone()) {
         menuElement.style.display = 'none';
+        menuElement.style.height = document.documentElement.clientHeight + 'px';
         addTouch();
     }
     $('#loading').css('display', 'block');
