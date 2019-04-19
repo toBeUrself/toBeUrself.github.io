@@ -5,9 +5,6 @@
     #main {
         margin-left: 220px!important;
     }
-    #menu {
-        z-index: 11!important;
-    }
 }
 
 .top {
@@ -15,7 +12,6 @@
     height: 42px;
     position: fixed;
     background-color: #1e3799;
-    z-index: 200;
 }
 
 #menu {
@@ -25,7 +21,6 @@
     color: black;
     width: 220px;
     height: 100%;
-    z-index: 5;
     ul {
         list-style-type: none;
         padding-left: 0;

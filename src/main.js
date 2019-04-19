@@ -39,6 +39,7 @@ function IsPhone() {
 }
 
 function onAnimFrame(e) {
+    if(isMove) return;
     menuElement.style.display = isOpen ? 'none' : 'block';
     let transformStyle = isOpen ? 'translateX(0px)' : 'translateX(220px)';
     mainElement.style.webkitTransform = transformStyle;
@@ -47,17 +48,12 @@ function onAnimFrame(e) {
     mainElement.style.transform = transformStyle;
     mainElement.style.transition = 'all 150ms ease-out';
     isOpen = !isOpen;
-}
-
-function getGesturePointFromEvent(evt) {
-    let point = {};
-    point.x = evt.targetTouches[0].clientX;
-    point.y = evt.targetTouches[0].clientY;
-    return point;
+    isMove = true;
 }
 
 let touchCount = 0;
 let isOpen = false;
+let isMove = false;
 let timeout;
 let menuElement;
 let mainElement;
@@ -85,9 +81,11 @@ function addTouch() {
         if (touchCount > 1) {
             window.requestAnimationFrame(onAnimFrame);
         }
+        isMove = false;
     }
 
     const handleGestureMove = function (evt) {
+        touchCount = 0;
     }
 
     document.addEventListener('touchstart', handleGestureStart, true);
