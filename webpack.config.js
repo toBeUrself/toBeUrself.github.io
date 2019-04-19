@@ -75,10 +75,6 @@ const config = {
             chunkFilename: "style.[hash].css"
         }),
         new CopyWebpackPlugin([{
-            from: __dirname + '/css',
-            to: __dirname + '/dist/css'
-        }]),
-        new CopyWebpackPlugin([{
             from: __dirname + '/my-sw.js',
             to: __dirname + '/dist'
         }]),

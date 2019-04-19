@@ -24,126 +24,77 @@ window.onscroll = function () {
     document.getElementById('progress').style.width = progress;
 }
 
-function onAnimFrame(e) {
-    // if (!rafPending) {
-    //     return;
-    // }
 
-    var differenceInX = initialTouchPos.x - lastTouchPos.x;
-    if ((differenceInX < -50 && menuClose) || (differenceInX > 50 && !menuClose)) {
-        toggleAll(e);
+function IsPhone() {
+    const userAgentInfo = navigator.userAgent;
+    const Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+    let flag = false;
+    for (let v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > -1) {
+            flag = true;
+            break;
+        }
     }
-    lastTouchPos = null;
-    initialTouchPos = null;
+    return flag;
+}
 
-    // var newXTransform = (currentXPosition - differenceInX) + 'px';
-    // var transformStyle = 'translateX(' + newXTransform + ')';
-    // swipeFrontElement.style.webkitTransform = transformStyle;
-    // swipeFrontElement.style.MozTransform = transformStyle;
-    // swipeFrontElement.style.msTransform = transformStyle;
-    // swipeFrontElement.style.transform = transformStyle;
-
-    // rafPending = false;
+function onAnimFrame(e) {
+    menuElement.style.display = isOpen ? 'none' : 'block';
+    let transformStyle = isOpen ? 'translateX(0px)' : 'translateX(220px)';
+    mainElement.style.webkitTransform = transformStyle;
+    mainElement.style.MozTransform = transformStyle;
+    mainElement.style.msTransform = transformStyle;
+    mainElement.style.transform = transformStyle;
+    mainElement.style.transition = 'all 150ms ease-out';
+    isOpen = !isOpen;
 }
 
 function getGesturePointFromEvent(evt) {
-    var point = {};
-
-    if (evt.targetTouches) {
-        // Prefer Touch Events
-        point.x = evt.targetTouches[0].clientX;
-        point.y = evt.targetTouches[0].clientY;
-    } else {
-        // Either Mouse event or Pointer Event
-        point.x = evt.clientX;
-        point.y = evt.clientY;
-    }
-
+    let point = {};
+    point.x = evt.targetTouches[0].clientX;
+    point.y = evt.targetTouches[0].clientY;
     return point;
 }
 
-let initialTouchPos;
-let lastTouchPos;
-let menuClose = true;
+let touchCount = 0;
+let isOpen = false;
+let timeout;
+let menuElement;
+let mainElement;
 function addTouch() {
-    // Handle the start of gestures
     const handleGestureStart = function (evt) {
-        // evt.preventDefault();
-
         if (evt.touches && evt.touches.length > 1) {
             return;
         }
 
-        // Add the move and end listeners
-        // if (window.PointerEvent) {
-        //     evt.target.setPointerCapture(evt.pointerId);
-        // } else {
-        //     // Add Mouse Listeners
-        //     document.addEventListener('mousemove', handleGestureMove, true);
-        //     document.addEventListener('mouseup', handleGestureEnd, true);
-        // }
-
-        initialTouchPos = getGesturePointFromEvent(evt);
-
-        // swipeFrontElement.style.transition = 'initial';
+        mainElement.style.transition = 'initial';
     }
     // Handle end gestures
     const handleGestureEnd = function (evt) {
-        // evt.preventDefault();
-
         if (evt.touches && evt.touches.length > 0) {
             return;
         }
-
-        // rafPending = false;
-
-        // Remove Event Listeners
-        // if (window.PointerEvent) {
-        //     evt.target.releasePointerCapture(evt.pointerId);
-        // } else {
-        // Remove Mouse Listeners
-        // document.removeEventListener('mousemove', handleGestureMove, true);
-        // document.removeEventListener('mouseup', handleGestureEnd, true);
-        // }
-
-
-        onAnimFrame(evt);
-        // initialTouchPos = null;
+        touchCount++;
+        if (timeout) {
+            clearTimeout(timeout);
+            timeout = 0;
+        }
+        timeout = setTimeout(() => {
+            touchCount = 0;
+        }, 300);
+        if (touchCount > 1) {
+            window.requestAnimationFrame(onAnimFrame);
+        }
     }
 
     const handleGestureMove = function (evt) {
-        // evt.preventDefault();
-
-        // if (!initialTouchPos) {
-        //     return;
-        // }
-
-        lastTouchPos = getGesturePointFromEvent(evt);
-
-        // if (rafPending) {
-        //     return;
-        // }
-
-        // rafPending = true;
     }
 
-    // Check if pointer events are supported.
-    // if (window.PointerEvent) {
-    //     // Add Pointer Event Listener
-    //     document.addEventListener('pointerdown', handleGestureStart, true);
-    //     document.addEventListener('pointermove', handleGestureMove, true);
-    //     document.addEventListener('pointerup', handleGestureEnd, true);
-    //     document.addEventListener('pointercancel', handleGestureEnd, true);
-    // } else {
-    // Add Touch Listener
     document.addEventListener('touchstart', handleGestureStart, true);
     document.addEventListener('touchmove', handleGestureMove, true);
     document.addEventListener('touchend', handleGestureEnd, true);
     document.addEventListener('touchcancel', handleGestureEnd, true);
 
-    // Add Mouse Listener
-    // document.addEventListener('mousedown', handleGestureStart, true);
-    // }
 }
 
 function setDefault() {
@@ -165,45 +116,21 @@ function registerSW() {
                 Notification.requestPermission();
                 new Notification("Hi Dear", {
                     body: res.data,
-                    icon: '/img/app.png'
+                    icon: '/img/app-192.png'
                 });
             }
         });
     }
 }
 
-function toggleClass(element, className) {
-    const classes = element.className.split(/\s+/);
-    let length = classes.length;
-    let i = 0;
-
-    for (; i < length; i++) {
-        if (classes[i] === className) {
-            classes.splice(i, 1);
-            break;
-        }
-    }
-    // The className is not found
-    if (length === classes.length) {
-        classes.push(className);
-    }
-
-    element.className = classes.join(' ');
-}
-
-function toggleAll(e) {
-    const active = 'active';
-
-    menuClose = !menuClose;
-    e.preventDefault();
-    toggleClass(layout, active);
-    toggleClass(menu, active);
-    toggleClass(menuLink, active);
-}
-
 window.onload = function () {
+    mainElement = document.getElementById('main');
+    menuElement = document.getElementById('menu');
+    menuElement.style.display = 'none';
     registerSW();
-    addTouch();
+    if (IsPhone()) {
+        addTouch();
+    }
     $('#loading').css('display', 'block');
     hljs.registerLanguage('javascript', javascript);
     marked.setOptions({
@@ -222,15 +149,6 @@ window.onload = function () {
     });
     setDefault();
 
-    $('#home').click((e) => {
-        if ($('#menuLink').css('display') === 'block') {
-            toggleAll(e);
-        }
-        $('#content').children().remove();
-        $('#loading').css('display', 'block');
-        setDefault();
-    });
-
     $('#info').on('click', () => {
         if (window.Notification) {
             Notification.requestPermission();
@@ -241,39 +159,18 @@ window.onload = function () {
         }
     });
 
-    $('#snow').on('click', () => {
-        const snow = $('.snow-container');
-        const display = snow.css('display');
-        snow.css('display', display === 'block' ? 'none' : 'block');
-    });
-
     $('#forkMe').on('click', () => {
         window.open('https://github.com/toBeUrself/toBeUrself.github.io');
     });
-
-    const layout = document.getElementById('layout');
-    const menu = document.getElementById('menu');
-    const menuLink = document.getElementById('menuLink');
-    const content = document.getElementById('main');
-
-    menuLink.onclick = function (e) {
-        toggleAll(e);
-    };
-
-    content.onclick = function (e) {
-        if (menu.className.indexOf('active') !== -1) {
-            toggleAll(e);
-        }
-    };
 
     function createTreeBlogs(blogs, list) {
         blogs.forEach(blog => {
             const name = blog.name.split('.')[0];
             if (blog.type === 'file') {
-                list.append(`<li class="pure-menu-item"><a class="pure-menu-link" href='#' title="${name}" data-url='${blog.download_url}'>${name}</a></li>`);
+                list.append(`<li class="file-li"><a class="menu-link" href='#' title="${name}" data-url='${blog.download_url}'>${name}</a></li>`);
             } else {
-                const ul = $('<ul class="nested pure-menu-list"></ul>');
-                const li = $(`<li class="pure-menu-item dir"><span class="span-dir caret" title="${blog.name}">${blog.name}</span></li>`);
+                const ul = $('<ul class="nested menu-list"></ul>');
+                const li = $(`<li class="menu-item dir"><span class="span-dir caret" title="${blog.name}">${blog.name}</span></li>`);
                 li.append(ul);
                 list.prepend(li);
                 jqueryGet(blog.url + '&' + UrlSet.GithubInfo + UrlSet.More).then(res => {
@@ -289,9 +186,10 @@ window.onload = function () {
         list.on('click', e => {
             const blogUrl = e.target.getAttribute('data-url');
             if (!blogUrl) return;
+            touchCount = 0;
             $('#loading').css('display', 'block');
-            toggleAll(e);
             $('#toTop')[0].click();
+            if (IsPhone()) window.requestAnimationFrame(onAnimFrame);
             jqueryGet(blogUrl + '?' + UrlSet.GithubInfo + UrlSet.More, 'text').then(res => {
                 document.getElementById('header').innerHTML = e.target.innerText;
                 document.getElementById('content').innerHTML = marked.parse(res);
@@ -299,6 +197,7 @@ window.onload = function () {
             });
         });
         $('.dir').on('click', e => {
+            touchCount = 0;
             e.target.classList.toggle('caret-down');
             e.target.parentElement.lastChild.classList.toggle("active");
         });
