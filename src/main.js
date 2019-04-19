@@ -126,9 +126,9 @@ function registerSW() {
 window.onload = function () {
     mainElement = document.getElementById('main');
     menuElement = document.getElementById('menu');
-    menuElement.style.display = 'none';
     registerSW();
     if (IsPhone()) {
+        menuElement.style.display = 'none';
         addTouch();
     }
     $('#loading').css('display', 'block');
