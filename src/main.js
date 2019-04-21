@@ -101,6 +101,7 @@ function addTouch() {
 function setDefault() {
     $('#header').text('Tim的三味屋');
     let girl = $('<img class="poem" src="/img/girl.jpeg"></div>');
+    $('#content').empty();
     $('#content').append(girl);
     $('#loading').css('display', 'none');
 }
@@ -150,6 +151,15 @@ window.onload = function () {
         xhtml: false
     });
     setDefault();
+
+    $('.user-icon').on('click', (e) => {
+        setDefault();
+        $('#toTop')[0].click();
+        if (IsPhone() && isOpen) {
+            window.requestAnimationFrame(onAnimFrame);
+            isMove = false;
+        }
+    });
 
     $('#info').on('click', (e) => {
         if (window.Notification) {
