@@ -259,11 +259,12 @@ code {
         background-color: #007200;
     }
     #toTop {
-        background-color: mediumpurple;
+        background-color: darkslategrey;
         position: relative;
         width: 24px;
         height: 24px;
         border-radius: 24px;
+        box-shadow: 0px 0px 0px 2px;
     }
 
     #toTop::before{

@@ -24,6 +24,11 @@ window.onscroll = function () {
     document.getElementById('progress').style.width = progress;
 }
 
+history.pushState(null, null, document.URL);
+window.addEventListener('popstate', function() {
+    history.pushState(null, null, document.URL);
+});
+
 
 function IsPhone() {
     const userAgentInfo = navigator.userAgent;
