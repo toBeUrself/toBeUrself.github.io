@@ -5,6 +5,10 @@
     #main {
         margin-left: 220px!important;
     }
+
+    .user-icon {
+        top: -6px!important;
+    }
 }
 
 .top {
@@ -21,7 +25,7 @@
         display: inline-block;
         border-radius: 30px;
         position: relative;
-        top: -6px;
+        top: 6px;
     }
 }
 
@@ -233,12 +237,12 @@ code {
     background-image: url(https://tobeurself.github.io/img/loading.gif);
     background-repeat: no-repeat;
     position: fixed;
-    top: 30%;
-    right: calc(50% - 5em);
-    width: 10em;
-    height: 10em;
+    top: 6px;
+    width: 32px;
+    height: 32px;
     display: block;
-    z-index: 12;
+    z-index: 999;
+    right: 10px;
 }
 
 .btn-group {
