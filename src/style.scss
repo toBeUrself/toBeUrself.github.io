@@ -13,6 +13,30 @@
     position: fixed;
     background-color: #1e3799;
     z-index: 666;
+    padding: 0 8px;
+    line-height: 42px;
+    .user-icon {
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        border-radius: 30px;
+        position: relative;
+        top: -6px;
+    }
+}
+
+#header {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    font-size: 22px;
+    padding-left: 10px;
+    color: azure;
+    font-family: cursive;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 70px);
 }
 
 #menu {
@@ -40,7 +64,7 @@
 
 body, #main {
     background-color: #fad390;
-    touch-action: manipulation;
+    touch-action: pan-y;
     margin: 0;
 }
 
@@ -225,14 +249,28 @@ code {
     a {
         display: block;
         text-decoration: none;
-        box-shadow: 0px 0px 0px 1px #007200;
-        background-color: mediumpurple;
         color: white;
-        margin-bottom: 5px;
-        border-radius: 2px;
     }
-    a:hover{
+    #toTop:active{
         background-color: #007200;
-        box-shadow: 0px 0px 0px 1px purple;
+    }
+    #toTop {
+        background-color: mediumpurple;
+        position: relative;
+        width: 24px;
+        height: 24px;
+        border-radius: 24px;
+    }
+
+    #toTop::before{
+        content: "";
+        width: 10px;
+        height: 10px;
+        border: solid #fad390;
+        border-width: 2px 0 0 2px;
+        transform: translate(-50%, -50%) rotate(45deg);
+        position: absolute;
+        left: 50%;
+        top: 60%;
     }
 }

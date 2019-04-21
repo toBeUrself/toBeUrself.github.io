@@ -39,7 +39,7 @@ function IsPhone() {
 }
 
 function onAnimFrame(e) {
-    if(isMove) return;
+    if (isMove) return;
     menuElement.style.display = isOpen ? 'none' : 'block';
     let transformStyle = isOpen ? 'translateX(0px)' : 'translateX(220px)';
     mainElement.style.webkitTransform = transformStyle;
@@ -70,6 +70,9 @@ function addTouch() {
         if (evt.touches && evt.touches.length > 0) {
             return;
         }
+        if (evt.target.tagName.toLowerCase() === 'a') {
+            return;
+        }
         touchCount++;
         if (timeout) {
             clearTimeout(timeout);
@@ -88,10 +91,10 @@ function addTouch() {
         touchCount = 0;
     }
 
-    document.addEventListener('touchstart', handleGestureStart, true);
-    document.addEventListener('touchmove', handleGestureMove, true);
-    document.addEventListener('touchend', handleGestureEnd, true);
-    document.addEventListener('touchcancel', handleGestureEnd, true);
+    document.addEventListener('touchstart', handleGestureStart);
+    document.addEventListener('touchmove', handleGestureMove);
+    document.addEventListener('touchend', handleGestureEnd);
+    document.addEventListener('touchcancel', handleGestureEnd);
 
 }
 
@@ -148,7 +151,7 @@ window.onload = function () {
     });
     setDefault();
 
-    $('#info').on('click', () => {
+    $('#info').on('click', (e) => {
         if (window.Notification) {
             Notification.requestPermission();
             new Notification("Hi Dear", {
@@ -158,7 +161,7 @@ window.onload = function () {
         }
     });
 
-    $('#forkMe').on('click', () => {
+    $('#forkMe').on('click', (e) => {
         window.open('https://github.com/toBeUrself/toBeUrself.github.io');
     });
 
@@ -188,7 +191,10 @@ window.onload = function () {
             touchCount = 0;
             $('#loading').css('display', 'block');
             $('#toTop')[0].click();
-            if (IsPhone()) window.requestAnimationFrame(onAnimFrame);
+            if (IsPhone()) {
+                window.requestAnimationFrame(onAnimFrame);
+                isMove = false;
+            }
             jqueryGet(blogUrl + '?' + UrlSet.GithubInfo + UrlSet.More, 'text').then(res => {
                 document.getElementById('header').innerHTML = e.target.innerText;
                 document.getElementById('content').innerHTML = marked.parse(res);
