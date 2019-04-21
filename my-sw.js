@@ -1,12 +1,12 @@
 'use strict';
 
-var cacheName = 'tim-blog-011';
+var cacheName = 'tim-blog-012';
 var filesToCache = [
   '/',
   '/img',
-  '/main.36241211759b53b19e0f.js',
-  '/vender.36241211759b53b19e0f.js',
-  '/style.36241211759b53b19e0f.css',
+  '/main.4db753ef91d5421a6833.js',
+  '/vender.4db753ef91d5421a6833.js',
+  '/style.4db753ef91d5421a6833.css',
   '/manifest.json',
   '/my-sw.js'
 ];
