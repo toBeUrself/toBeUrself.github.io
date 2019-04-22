@@ -3,7 +3,7 @@
 var cacheName = 'tim-blog-012';
 var filesToCache = [
   '/',
-  '/img',
+  '/img/girl.jpeg',
   '/main.4db753ef91d5421a6833.js',
   '/vender.4db753ef91d5421a6833.js',
   '/style.4db753ef91d5421a6833.css',
