@@ -1,6 +1,6 @@
 'use strict';
 
-var cacheName = 'tim-blog-012';
+var cacheName = 'tim-blog-013';
 var filesToCache = [
   '/',
   '/img/girl.jpeg',
