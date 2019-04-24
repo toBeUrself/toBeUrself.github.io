@@ -6,16 +6,9 @@ import 'highlight.js/styles/github.css';
 import hljs from 'highlight.js/lib/highlight';
 import javascript from 'highlight.js/lib/languages/javascript';
 
-function jqueryGet(url, type) {
-    return new Promise(function (resolve) {
-        $.ajax({
-            url: url,
-            type: 'GET',
-            dataType: type || 'json',
-            success: function (res) {
-                resolve(res);
-            }
-        })
+function fetchGet(url, type) {
+    return fetch(url).then(res => {
+        return type === 'text' ? res.text() : res.json();
     });
 }
 
@@ -24,9 +17,23 @@ window.onscroll = function () {
     document.getElementById('progress').style.width = progress;
 }
 
-history.pushState(null, null, document.URL);
-window.addEventListener('popstate', function() {
-    history.pushState(null, null, document.URL);
+window.addEventListener('popstate', function (evt) {
+    if (!evt.state) return;
+    if (evt.state.url === 'home') {
+        setDefault();
+    } else {
+        $('#loading').css('display', 'block');
+        $('#toTop')[0].click();
+        if (IsPhone()) {
+            window.requestAnimationFrame(onAnimFrame);
+            isMove = false;
+        }
+        fetchGet(UrlSet.GithubRawUrl + evt.state.url + '?' + UrlSet.GithubInfo + UrlSet.More, 'text').then(res => {
+            document.getElementById('header').innerHTML = decodeURI(evt.state.url.split('/').reverse()[0]).split('.')[0];
+            document.getElementById('content').innerHTML = marked.parse(res);
+            $('#loading').css('display', 'none');
+        });
+    }
 });
 
 
@@ -109,6 +116,7 @@ function setDefault() {
     $('#content').empty();
     $('#content').append(girl);
     $('#loading').css('display', 'none');
+    history.pushState({ url: 'home' }, null, 'home');
 }
 
 function registerSW() {
@@ -176,6 +184,10 @@ window.onload = function () {
         }
     });
 
+    $('#toTop').on('click', () => {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+    })
+
     $('#forkMe').on('click', (e) => {
         window.open('https://github.com/toBeUrself/toBeUrself.github.io');
     });
@@ -184,25 +196,27 @@ window.onload = function () {
         blogs.forEach(blog => {
             const name = blog.name.split('.')[0];
             if (blog.type === 'file') {
-                list.append(`<li class="file-li"><a class="menu-link" href='#' title="${name}" data-url='${blog.download_url}'>${name}</a></li>`);
+                list.append(`<li class="file-li"><a class="menu-link" href='javascrip:void(0)' title="${name}" data-url='${blog.download_url}'>${name}</a></li>`);
             } else {
                 const ul = $('<ul class="nested menu-list"></ul>');
                 const li = $(`<li class="menu-item dir"><span class="span-dir caret" title="${blog.name}">${blog.name}</span></li>`);
                 li.append(ul);
                 list.prepend(li);
-                jqueryGet(blog.url + '&' + UrlSet.GithubInfo + UrlSet.More).then(res => {
+                fetchGet(blog.url + '&' + UrlSet.GithubInfo + UrlSet.More).then(res => {
                     createTreeBlogs(res, ul);
                 });
             }
         });
     }
 
-    jqueryGet(UrlSet.BlogRepo + '?' + UrlSet.GithubInfo + UrlSet.More).then(blogs => {
+    fetchGet(UrlSet.BlogRepo + '?' + UrlSet.GithubInfo + UrlSet.More).then(blogs => {
         const list = $('#blogList');
         createTreeBlogs(blogs, list);
         list.on('click', e => {
             const blogUrl = e.target.getAttribute('data-url');
             if (!blogUrl) return;
+            const state = blogUrl.slice(58);
+            history.pushState({ url: state }, '', state.split('/').reverse()[0]);
             touchCount = 0;
             $('#loading').css('display', 'block');
             $('#toTop')[0].click();
@@ -210,7 +224,7 @@ window.onload = function () {
                 window.requestAnimationFrame(onAnimFrame);
                 isMove = false;
             }
-            jqueryGet(blogUrl + '?' + UrlSet.GithubInfo + UrlSet.More, 'text').then(res => {
+            fetchGet(blogUrl + '?' + UrlSet.GithubInfo + UrlSet.More, 'text').then(res => {
                 document.getElementById('header').innerHTML = e.target.innerText;
                 document.getElementById('content').innerHTML = marked.parse(res);
                 $('#loading').css('display', 'none');
