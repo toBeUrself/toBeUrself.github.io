@@ -116,7 +116,7 @@ function setDefault() {
     $('#content').empty();
     $('#content').append(girl);
     $('#loading').css('display', 'none');
-    history.pushState({ url: 'home' }, null, 'home');
+    history.pushState({ url: 'home' }, null, '');
 }
 
 function registerSW() {
