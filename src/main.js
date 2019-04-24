@@ -196,7 +196,7 @@ window.onload = function () {
         blogs.forEach(blog => {
             const name = blog.name.split('.')[0];
             if (blog.type === 'file') {
-                list.append(`<li class="file-li"><a class="menu-link" href='javascrip:void(0)' title="${name}" data-url='${blog.download_url}'>${name}</a></li>`);
+                list.append(`<li class="file-li"><a class="menu-link" onclick="return false" href='javascrip:void(0)' title="${name}" data-url='${blog.download_url}'>${name}</a></li>`);
             } else {
                 const ul = $('<ul class="nested menu-list"></ul>');
                 const li = $(`<li class="menu-item dir"><span class="span-dir caret" title="${blog.name}">${blog.name}</span></li>`);
