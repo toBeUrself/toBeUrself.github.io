@@ -1,6 +1,6 @@
 'use strict';
 
-var cacheName = 'tim-blog-013';
+var cacheName = 'tim-blog-014';
 var filesToCache = [
   '/',
   '/img/girl.jpeg',
@@ -38,24 +38,29 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  var requestType = event.request.url.split('.')[event.request.url.split('.').length - 1].toLowerCase()
-  if (['html', 'css', 'json', 'js'].indexOf(requestType) > -1) {
-    event.respondWith(caches.match(event.request).then(res => {
-      if (res) {
-        return res;
-      } else {
-        fetch(event.request).then(response => {
-          caches.open(cacheName).then(cache => {
-            cache.put(event.request, response.clone());
-          }).then(() => {
-            return response;
-          });
-        });
-      }
-    }));
-  } else {
-    console.info('not fetch file: ', requestType);
-  }
+  event.respondWith(
+    caches.match(event.request).then(function(response) {
+      return response || fetch(event.request);
+    })
+  );
+//   var requestType = event.request.url.split('.')[event.request.url.split('.').length - 1].toLowerCase()
+//   if (['html', 'css', 'json', 'js'].indexOf(requestType) > -1) {
+//     event.respondWith(caches.match(event.request).then(res => {
+//       if (res) {
+//         return res;
+//       } else {
+//         fetch(event.request).then(response => {
+//           caches.open(cacheName).then(cache => {
+//             cache.put(event.request, response.clone());
+//           }).then(() => {
+//             return response;
+//           });
+//         });
+//       }
+//     }));
+//   } else {
+//     console.info('not fetch file: ', requestType);
+//   }
 });
 
 self.addEventListener('message', event => {
