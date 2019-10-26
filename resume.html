@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Tim's resume</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <style>
         * {
             border: 0;
@@ -20,7 +20,7 @@
             position: absolute;
             left: 0;
             right: 0;
-            color: #01aefb;
+            color: black;
             font-family: serif;
             padding: 15px;
             padding-left: 30px;
@@ -53,7 +53,7 @@
 
         .profile {
             margin-left: -34px;
-            height: 113px;
+            height: 115px;
         }
 
         .info {
@@ -107,25 +107,26 @@
         }
 
         h2 {
-            font-family: -webkit-body;
             margin: 0;
-            border-bottom: 2px solid;
-            width: 97px;
-            padding-bottom: 2px;
+            border-bottom: 1px solid;
+            width: 98px;
             float: left;
+            margin-top: 10px;
+            font-size: 20px;
+            text-align: center;
         }
 
         .education {
             margin-left: 50px;
             float: left;
             margin-top: 10px;
-            border-bottom: 2px solid;
+            border-bottom: 1px solid;
             padding-bottom: 5px;
             width: 645px;
         }
 
         b {
-            margin-right: 50px;
+            margin-right: 20px;
         }
 
         .desc {
@@ -136,6 +137,7 @@
             font-size: 15px;
             font-family: -webkit-pictograph;
             clear: both;
+            font-size: 14px;
         }
 
         p {
@@ -146,7 +148,7 @@
         .title {
             color: cadetblue;
             font-size: large;
-            font-weight: bold;
+            font-size: 14px;
         }
 
         .footer-line {
@@ -166,7 +168,7 @@
             <img src="./img/profile.jpg" alt="profile" class="profile" />
             <div style="position: absolute;top: 135px;left: 5px;">
                 <i class="far fa-calendar-alt"></i>
-                <span style="margin-right: 32px;">生日：1993.08.04</span>
+                <span style="margin-right: 31px;">生日：1993.08.04</span>
                 <i class="fas fa-phone-volume"></i>
                 <span>电话：18017424747</span>
             </div>
@@ -180,7 +182,7 @@
         <div class="content">
             <div>
                 <h2>教育背景</h2>
-                <i class="fas fa-circle" style="position: absolute; top: 264px;left: 116px;font-size: small;"></i>
+                <i class="fas fa-circle" style="position: absolute; top: 265px;left: 116px;font-size: small;"></i>
                 <div class="education">
                     <b>2012.09-2016.06</b>
                     <b>同济大学</b>
@@ -195,23 +197,24 @@
             </div>
             <div>
                 <h2>工作背景</h2>
-                <i class="fas fa-circle" style="position: absolute; top: 349px;left: 116px;font-size: small;"></i>
+                <i class="fas fa-circle" style="position: absolute; top: 343px;left: 116px;font-size: small;"></i>
                 <div class="education">
                     <b>2016.04-2017-05</b>
                     <b>上海积成慧集信息技术有限公司</b>
                     <b>前端工程师</b>
                 </div>
                 <div class="desc">
-                    <div style="padding-top: 10px;font-weight: bold;">
-                        <span class="title">项目名称：</span>供水、排水、现维等系统
-                    </div>
-                    <div style="margin-bottom: 3px;">
-                        <span class="title">主要技术：</span>H5、ArcGIS、Dojo、JQuery和Bootstrap</div>
+                    <div style="margin-bottom: 3px;padding-top: 10px;">
+                        <span class="title">技术栈：</span>H5、ArcGIS、Dojo、JQuery和Bootstrap</div>
                     <div style="margin-bottom: 10px;line-height: 25px;">
-                        <span class="title">职责简述：</span>主要参与供水综合展示系统中部分模块的设计与实现并维护其他系统。 工作内容包括设计页面排版，符合用户操作体验。实现多组合条件的查找数据，以图表和根据数据的坐标信息在地图上进行撒点、定位及聚类等方式向用户展示数据。用户还可以在地图上进行测绘、打点、画面和横剖面等操作，计算对应地下供水设备的数据信息。
+                        <div>
+                            <span class="title">项目名称：</span>供水、排水、现维等系统
+                        </div>
+                        <span class="title">职责简述：</span>主要参与供水综合展示系统中部分模块的重构，设计与实现，并维护系统。
+                        工作内容包括设计符合用户操作体验的页面排版。实现多组合条件的数据检索，根据数据的信息在地图上绘制点位分布、定位及聚类等。用户还可以在地图上进行测绘、打点、画面和横剖面等操作，计算并预估地下对应供水设备的相关数据信息。
                     </div>
                     <div style="padding-bottom: 10px;line-height: 25px;">
-                        <span class="title">工作总结：</span>前端前期使用DOM原生接口，后面引入JQuery库，这种比较原始的方式能更直接的认识前端，同时能学习并掌握比较基础的知识。在此项目中技术没有太多限制，只要能实现功能，比较自由。
+                        <span class="title">工作总结：</span>原生方式操作Dom对前端有更直接的认识，掌握扎实的基础知识。同时也学习到工业供水和Gis相关知识。
                     </div>
                 </div>
                 <div class="education" style="margin-left: 147px;">
@@ -220,32 +223,39 @@
                     <b>前端工程师</b>
                 </div>
                 <div class="desc">
-                    <div style="padding-top: 10px;font-weight: bold;">
-                        <span class="title">项目名称：</span>Client Insight CRM系统
-                    </div>
-                    <div style="margin-bottom: 3px;">
-                        <span class="title">主要技术：</span>Angular、KendoUI、Bootstrap和C#</div>
+                    <div style="margin-bottom: 3px;padding-top: 10px;">
+                        <span class="title">技术栈：</span>Angular、KendoUI、Typescript和Webpack</div>
                     <div style="margin-bottom: 10px;line-height: 25px;">
-                        <span class="title">职责简述：</span>主要参与MiFID II(欧盟金融工具市场指导)模块相关页面功能的开发与后期的维护，并维护其他模块。工作内容主要是开发Agreements创建和编辑的页面,展示Agreements详细信息和Agreement与Account，Contact之间的关联关系以及组合条件查询等功能，根据用户的权限做权限控制。主要使用Kendo的Grid组件，分页展示Agreements，并支持用户根据不同字段对数据做search、sort和filter等操作。后端的工作是写API，给C#加UT，提高覆盖率。
-                        MiFID II模块没活的时候，参与到其他项目中做一些小页面，比如用d3画图，做词云和写个小程序把SQL Server的数据同步到Mongo。后期主要参与到前端重构工作中，用高版本Angular重构一些页面。
+                        <div>
+                            <span class="title">项目名称：</span>Client Insight CRM
+                        </div>
+                        <span class="title">职责简述：</span>主要负责MiFID II(欧盟金融工具市场指导)相关模块的开发与后期的维护，同时维护其他模块。
+                        Agreements模块主要职责是分页展示Agreement列表以及详情页，并允许新增Agreement。Agreements模块和Accounts,Contacts模块之间有关联，可以来回引用跳转。
+                        因为数据量较大，分页和多条件搜索都基于服务端，同时做权限控制。
+                    </div>
+                    <div style="margin-bottom: 10px;line-height: 25px;">
+                        <div>
+                            <span class="title">项目名称：</span>Client Insight Mobile
+                        </div>
+                        <span
+                            class="title">职责简述：</span>主要负责Activity，Contact模块的重构以及打包优化。新版本Mobile是用Angular7和Ionic4重构的，Ionic3和Ionic
+                        4差异比较大，
+                        版本升级工作其实是在一个全新的项目中。打包的时候手动把Ionic组件的js文件打包成一个大文件并忽略安卓部分的js文件，Lodash, D3和Moment等资源打包优化。
                     </div>
                     <div style="padding-bottom: 10px;line-height: 25px;">
-                        <span class="title">工作总结：</span>在项目中接触的东西很多，尤其是Angular的几个版本都有项目在使用。在此期间，除了学习到许多技术上的知识，还学习到了大团队共同协作的工作方式、流程和规范。
+                        <span class="title">工作总结：</span>在框架的基础上，开发效率很高，可以专注在业务和数据。而且完善的体系中，代码提交，项目构建，发布的体验都很好。
                     </div>
                 </div>
             </div>
             <div>
-                <h2>自我评价</h2>
-                <i class="fas fa-circle" style="position: absolute; top: 1007px;left: 116px;font-size: small;"></i>
-                <div class="education">
-                    <b>路漫漫其修远兮，吾将上下而求索</b>
-                </div>
-                <div class="desc">
-                    <ul style="padding:15px;list-style: circle;">
+                <h2 style="width: 148px;">自我评价</h2>
+                <div class="desc"
+                    style="border-bottom: 1px solid black;margin-bottom: 20px;border-left: 1px solid black;border-radius: 0 100px;margin-right: 0;">
+                    <ul style="list-style: circle;margin-left: 20px;">
                         <li>喜欢跑步，骑行，打篮球。</li>
+                        <li>轻微代码洁癖，喜欢优化代码。</li>
                         <li>工作认真负责，积极主动，抗压能力强。</li>
                         <li>接受新东西快，热爱编程，喜欢探索技术。</li>
-                        <li>轻微代码洁癖，偏执代码优化。</li>
                     </ul>
                 </div>
             </div>
