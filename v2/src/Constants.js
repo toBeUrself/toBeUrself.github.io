@@ -22,7 +22,7 @@ markedjs.setOptions({
     sanitize: false,
     smartLists: true,
     smartypants: false,
-    langPrefix: 'javascript-',
+    langPrefix: 'hljs language-',
 });
 
 export const marked = markedjs
