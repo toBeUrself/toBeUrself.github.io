@@ -10,3 +10,5 @@ Please [read this](https://developers.google.com/web/fundamentals/web-app-manife
 The boy focus on Javescript.
 
 changes for github action workflow
+
+yml file update
