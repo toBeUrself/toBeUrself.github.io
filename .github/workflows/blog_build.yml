@@ -12,9 +12,6 @@ jobs:
   build:
     name: blog build job
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node_version: ['10', '12']
   
     steps:
     - name: Refer to repo
@@ -22,10 +19,13 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node_version }}
+        node-version: '10.x'
       
     - name: Into v2
-      run: cd v2
+      run: |
+        pwd
+        cd v2
+        pwd
     - name: npm install
       run: npm install
     - name: npm build
