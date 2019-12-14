@@ -6,7 +6,7 @@ on:
       - master
       - Tim
     tags:
-      - build v*
+      - build
 
 jobs:
   build:
@@ -18,12 +18,14 @@ jobs:
   
     steps:
     - name: Refer to repo
-    - uses: actions/checkout@v1
+      uses: actions/checkout@v1
     - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node_version }}
       
+    - name: Into v2
+      run: cd v2
     - name: npm install
       run: npm install
     - name: npm build
