@@ -1,11 +1,10 @@
 name: Test action
 
 on: 
-  push:
+  pull_request:
     branches: 
       - master
-    paths:
-      - v2
+      - Tim
 
 jobs:
   build:

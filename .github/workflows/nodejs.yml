@@ -5,25 +5,22 @@ on:
     branches: 
       - master
       - Tim
-    paths:
-      - 'v2/*'
 
 jobs:
   build:
     name: blog build job
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [10.x]
-
+    
     steps:
+    - name: Refer to repo
     - uses: actions/checkout@v1
+    - name: Into folder
+      run: cd v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: '10.x'
     - name: npm install
-      run: |
-        npm install
-        npm run build --if-present
+      run: npm install
+    - name: npm build
+      run: npm run build
