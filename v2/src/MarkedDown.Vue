@@ -31,5 +31,7 @@
 </script>
 
 <style>
-
+    code {
+        border: 1px solid purple;
+    }
 </style>
