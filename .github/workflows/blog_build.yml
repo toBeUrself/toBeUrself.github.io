@@ -22,17 +22,17 @@ jobs:
         node-version: '10.x'
     - name: npm install
       run: |
-        cd v4
+        cd v3
         pwd
         npm install
     - name: npm build
       run: |
-        cd v4
+        cd v3
         pwd
         npm run build
     - name: list files
       run: |
-        cd v4
+        cd v3
         pwd
         find . -maxdepth 1
         
