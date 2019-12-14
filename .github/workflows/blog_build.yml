@@ -20,8 +20,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-    - name: Into v2
-      run: cd v2
     - name: npm install
       run: npm install
     - name: npm build
