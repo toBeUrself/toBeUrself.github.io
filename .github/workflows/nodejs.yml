@@ -12,6 +12,7 @@ on:
      - build v*
     branches:
      - master
+     - Tim
     paths: 
       - 'v2/*'
 
