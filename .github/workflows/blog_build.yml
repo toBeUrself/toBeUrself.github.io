@@ -27,13 +27,14 @@ jobs:
         npm install
     - name: npm build
       run: |
-        pwd
         cd v2
+        pwd
         npm run build
     - name: list files
       run: |
+        cd v2
         pwd
-        ls
+        find . -maxdepth 1
         
         
         
