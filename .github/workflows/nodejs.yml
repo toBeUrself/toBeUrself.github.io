@@ -4,6 +4,7 @@ on:
   push:
     branches: 
       - master
+      - Tim
     paths:
       - 'v2/*'
   create:
