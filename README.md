@@ -6,3 +6,5 @@ Please [read this](https://developers.google.com/web/fundamentals/web-app-manife
 [Another article](https://dev.to/henrylim96/15nothing-pwa-12i9) for reference
 
 [汤姆大叔 Deep Javascript series](https://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html)
+
+The boy focus on Javescript.
