@@ -27,6 +27,10 @@ jobs:
         cd v2
         pwd
     - name: npm install
-      run: npm install
+      run: |
+        pwd
+        npm install
     - name: npm build
-      run: npm run build
+      run: |
+        pwd
+        npm run build
