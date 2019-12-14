@@ -33,5 +33,6 @@
 <style>
     code {
         border: 1px solid purple;
+        border-radius: 4px;
     }
 </style>
