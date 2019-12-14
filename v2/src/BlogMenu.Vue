@@ -101,7 +101,7 @@
     .menu-body {
         overflow: scroll;
         width: 100%;
-        height: 100%;
+        height: calc(100% - 20px);
         padding: 0 10px 20px 10px;
     }
 </style>
