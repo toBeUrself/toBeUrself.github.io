@@ -1,19 +1,11 @@
-name: Blog site building
+name: Blog site build
 
 on: 
-  push:
+  pull_request:
     branches: 
       - master
       - Tim
     paths:
-      - 'v2/*'
-  create:
-    tags: 
-     - build v*
-    branches:
-     - master
-     - Tim
-    paths: 
       - 'v2/*'
 
 jobs:
