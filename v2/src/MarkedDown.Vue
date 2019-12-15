@@ -31,8 +31,8 @@
 </script>
 
 <style>
-    code {
-        border: 1px solid purple;
-        border-radius: 4px;
+    .marked-down {
+        width: 100%;
+        max-width: 800px;
     }
 </style>
