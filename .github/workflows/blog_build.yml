@@ -54,7 +54,7 @@ jobs:
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
-        ACCESS_TOKEN: ${{ f7797360be4502e8087187576e11ee2178f514ce }}
+        ACCESS_TOKEN: ${{ secrets.for_action }}
         BASE_BRANCH: master # The branch the action should deploy from.
         BRANCH: master # The branch the action should deploy to.
         FOLDER: blog-v2 # The folder the action should deploy.
