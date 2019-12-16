@@ -22,13 +22,13 @@ jobs:
         node-version: '10.x'
     - name: npm install | build
       run: |
-        cd v3
+        cd v2
         pwd
         npm install
         npm run:script build
     #- name: list files
     #  run: |
-    #    cd v3
+    #    cd v2
      #   pwd
       #  find . -maxdepth 1
     - name: Deploy
