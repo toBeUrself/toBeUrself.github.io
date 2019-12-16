@@ -23,7 +23,7 @@ jobs:
     - name: npm install | build
       run: |
         pwd
-        npm ci
+        npm install
         npm run build
       working-directory: ./v2
     #- name: npm build
