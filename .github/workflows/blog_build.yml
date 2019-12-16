@@ -38,7 +38,7 @@ jobs:
     - name: Deploy to blog-v2
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
-        GITHUB_TOKEN: ${{ secrets.for_action }}
+        GITHUB_TOKEN: ${{ secrets.forAction }}
         BRANCH: master
         FOLDER: blog-v2
 
