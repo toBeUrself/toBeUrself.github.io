@@ -7,10 +7,6 @@ on:
       - Tim
     tags:
       - build
-  push:
-    branches:
-      - master
-      - Tim
 
 jobs:
   build:
