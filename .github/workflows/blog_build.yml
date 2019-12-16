@@ -20,18 +20,21 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-    - name: npm install | build
+    - name: npm install
       run: |
         cd v2
         pwd
         npm install
-        npm run:script build
+    - name: npm build
+      run: |
+        cd v2
+        npm run build
     #- name: list files
     #  run: |
     #    cd v2
      #   pwd
       #  find . -maxdepth 1
-    - name: Deploy
+    - name: Deploy to v2-vue
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
