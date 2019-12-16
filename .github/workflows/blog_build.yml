@@ -1,63 +1,67 @@
-# name: Blog site build
+name: Blog site build
 
-# on: 
-#   pull_request:
-#     branches: 
-#       - master
-#       - Tim
-#     tags:
-#       - build
+on: 
+  pull_request:
+    branches: 
+      - master
+      - Tim
+    tags:
+      - build
+  push:
+    branches:
+      - master
+      - Tim
 
-# jobs:
-#   build:
-#     name: blog build job
-#     runs-on: ubuntu-latest
+jobs:
+  build:
+    name: blog build job
+    runs-on: macos-latest
   
+    steps:
+    - name: Refer to repo
+      uses: actions/checkout@v1
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: npm install | build
+      run: |
+        pwd
+        npm ci
+        npm run build
+      working-directory: ./v2
+    # - name: npm build
+    #  run: |
+    #    cd v2
+    #    npm run build
+    - name: list files
+     run: |
+       cd v2
+       pwd
+       find . -maxdepth 1
+    # - name: Deploy to v2-vue
+    #   uses: JamesIves/github-pages-deploy-action@releases/v3
+    #   with:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #     BRANCH: master
+    #     FOLDER: v2-vue
+
+# name: Build and Deploy
+# on: [push]
+# jobs:
+#   build-and-deploy:
+#     runs-on: ubuntu-latest
 #     steps:
-#     - name: Refer to repo
+#     - name: Checkout
 #       uses: actions/checkout@v1
-#     - name: Setup Node.js
-#       uses: actions/setup-node@v1
-#       with:
-#         node-version: '10.x'
-#     - name: npm install | build
-#       run: |
-#         pwd
-#         npm ci
-#         npm run build
-#       working-directory: ./v2
-#     #- name: npm build
-#     #  run: |
-#     #    cd v2
-#     #    npm run build
-#     #- name: list files
-#     #  run: |
-#     #    cd v2
-#     #   pwd
-#     #  find . -maxdepth 1
-#     - name: Deploy to v2-vue
+
+#     - name: Build and Deploy
 #       uses: JamesIves/github-pages-deploy-action@releases/v3
 #       with:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#         BRANCH: master
-#         FOLDER: v2-vue
-
-name: Build and Deploy
-on: [push]
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-
-    - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: ${{ secrets.for_action }}
-        BASE_BRANCH: master # The branch the action should deploy from.
-        BRANCH: master # The branch the action should deploy to.
-        FOLDER: blog # The folder the action should deploy.
+#         ACCESS_TOKEN: ${{ secrets.for_action }}
+#         BASE_BRANCH: master # The branch the action should deploy from.
+#         BRANCH: master # The branch the action should deploy to.
+#         FOLDER: blog-v2 # The folder the action should deploy.
         
         
         
