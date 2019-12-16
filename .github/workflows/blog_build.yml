@@ -39,12 +39,12 @@ jobs:
        cd v2
        pwd
        find . -maxdepth 1
-    # - name: Deploy to v2-vue
-    #   uses: JamesIves/github-pages-deploy-action@releases/v3
-    #   with:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #     BRANCH: master
-    #     FOLDER: v2-vue
+    - name: Deploy to v2-vue
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        GITHUB_TOKEN: ${{ secrets.for_action }}
+        BRANCH: master
+        FOLDER: ./dist
 
 # name: Build and Deploy
 # on: [push]
