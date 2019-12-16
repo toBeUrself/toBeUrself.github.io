@@ -7,10 +7,6 @@ on:
       - Tim
     tags:
       - build
-  push:
-    branches:
-      - master
-      - Tim
 
 jobs:
   build:
@@ -34,7 +30,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         GITHUB_TOKEN: ${{ secrets.forAction }}
-        BRANCH: master
+        BRANCH: Tim
         FOLDER: blog-v2
 
         

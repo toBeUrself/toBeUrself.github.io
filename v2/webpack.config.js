@@ -11,11 +11,11 @@ module.exports = {
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'blog-v2')
     },
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
+        contentBase: path.join(__dirname, 'blog-v2'),
         compress: true,
         open: true,
         hot: true,
