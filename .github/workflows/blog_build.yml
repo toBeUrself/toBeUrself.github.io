@@ -30,10 +30,6 @@ jobs:
         npm ci
         npm run build
       working-directory: ./v2
-    # - name: npm build
-    #  run: |
-    #    cd v2
-    #    npm run build
     - name: list files
       run: |
        cd v2
@@ -46,22 +42,6 @@ jobs:
         BRANCH: master
         FOLDER: blog-v2
 
-# name: Build and Deploy
-# on: [push]
-# jobs:
-#   build-and-deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Checkout
-#       uses: actions/checkout@v1
-
-#     - name: Build and Deploy
-#       uses: JamesIves/github-pages-deploy-action@releases/v3
-#       with:
-#         ACCESS_TOKEN: ${{ secrets.for_action }}
-#         BASE_BRANCH: master # The branch the action should deploy from.
-#         BRANCH: master # The branch the action should deploy to.
-#         FOLDER: blog-v2 # The folder the action should deploy.
         
         
         
