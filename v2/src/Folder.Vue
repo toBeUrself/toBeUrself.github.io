@@ -13,7 +13,8 @@
         data: () => {
             return {
                 menuList: [],
-                maxHeight: 20
+                maxHeight: 20,
+                isOpen: false,
             }
         },
         components: {
@@ -21,7 +22,6 @@
         },
         props: {
             folderOptions: Object,
-            isOpen: Boolean,
         },
         computed: {
             getHeight: function () {

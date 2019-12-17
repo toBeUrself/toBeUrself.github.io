@@ -16,10 +16,8 @@
 
 <style>
     .blog-block {
-        width: 300px;
+        width: 100%;
         height: calc(100% - 35px);
-        flex-shrink: 0;
-        text-align: right;
         padding: 15px 10px 20px 30px;
     }
 </style>
