@@ -73,6 +73,9 @@
     }
     code {
         border-radius: 2px;
+        display: inline-block;
+        max-width: 100%;
+        overflow: auto;
     }
     p code {
         color: navajowhite;
