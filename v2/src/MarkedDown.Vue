@@ -1,5 +1,5 @@
 <template>
-    <div id="marked-view" class="marked-down" v-html="rawHtml"></div>
+    <div id="marked-view" class="marked-down" v-html="getHtml"></div>
 </template>
 
 <script>
@@ -12,6 +12,14 @@
                 rawHtml: '',
             }
         },
+        computed: {
+            getHtml() {
+                return marked.parse(this.rawHtml || this.defaultHtml)
+            }
+        },
+        props: {
+            defaultHtml: String,
+        },
         mounted() {
             const self = this
             busSvc.$on('file-click', filePath => {
@@ -23,7 +31,7 @@
                 fetch(url).then(res => {
                     return res.text()
                 }).then(html => {
-                    this.rawHtml = marked.parse(html)
+                    this.rawHtml = html
                 })
             }
         }
@@ -32,7 +40,6 @@
 
 <style>
     h1, h2, h3 {
-        color: white;
         font-weight: normal;
     }
     ol li:only-child, ul li:only-child {
@@ -58,12 +65,11 @@
         text-align: left;
     }
     blockquote {
-        border: 1px solid #406890;
         padding: 5px 20px;
         margin: 5px 0;
         color: #40906f;
-        border-radius: 4px;
-        border-left: 8px solid #406890;
+        border-radius: 2px;
+        border-left: 3px solid #40906f;
     }
     code {
         border-radius: 2px;

@@ -1,15 +1,33 @@
 <template>
     <div class="blog-body">
-        <marked-down></marked-down>
+        <marked-down :default-html="rawHtml"></marked-down>
     </div>
 </template>
 
 <script>
+    import { DefaultPage } from './Constants'
     import MarkedDown from './MarkedDown.vue'
     export default {
         name: 'BlogBody',
+        data: () => {
+            return {
+                rawHtml: ''
+            }
+        },
         components: {
             MarkedDown,
+        },
+        mounted() {
+            this.getRawHtml(DefaultPage)
+        },
+        methods: {
+            getRawHtml: function (url) {
+                fetch(url).then(res => {
+                    return res.text()
+                }).then(html => {
+                    this.rawHtml = html
+                })
+            }
         }
     }
 </script>

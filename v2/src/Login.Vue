@@ -5,11 +5,13 @@
 </template>
 
 <script>
+    import { notify } from './Constants';
+
     export default {
         name: 'Login',
         methods: {
             login: function () {
-                
+                notify('⚠️警告', '没有服务器，臣妾做不到啊')
             }
         }
     }
