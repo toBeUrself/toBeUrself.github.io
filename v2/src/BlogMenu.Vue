@@ -6,10 +6,10 @@
                 <p>作者：<a href="https://tobeurself.github.io/resume.html" target="_blank">刘泽运@前端</a></p>
             </div>
             <div class="blog-search">
-                <input type="text" />
+                <input placeholder="搜索..." type="text" />
             </div>
             <div class="blog-menu-tree">
-                <folder is-open :folder-options="folderOptions"></folder>
+                <folder :folder-options="folderOptions"></folder>
             </div>
         </div>
         <div class="menu-bar" @mousedown="menuBarDragStart"></div>
@@ -74,6 +74,11 @@
         outline: none;
         height: 20px;
         width: 100%;
+        border: 0;
+        background: grey;
+    }
+    ::-webkit-input-placeholder {
+        color: purple;
     }
     .blog-title {
         white-space: nowrap;
@@ -89,7 +94,7 @@
         height: 100%;
         flex-shrink: 0;
         display: flex;
-        box-shadow: 1px -50px 35px -12px;
+        box-shadow: 1px -50px 35px -12px black;
     }
     .menu-bar {
         border: 0.5px solid grey;

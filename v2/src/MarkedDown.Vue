@@ -31,8 +31,47 @@
 </script>
 
 <style>
-    .marked-down {
+    h1, h2, h3 {
+        color: white;
+        font-weight: normal;
+    }
+    ol li:only-child, ul li:only-child {
+        color: white;
+    }
+    hr {
+        border-color: grey;
+    }
+    a {
+        color: antiquewhite;
+    }
+    table {
         width: 100%;
-        max-width: 800px;
+        max-width: 100%;
+        border: 1px solid dimgrey;
+        border-collapse: collapse;
+    }
+    table td, table th {
+        padding: 5px;
+        border: 1px solid dimgrey;
+    }
+    table td {
+        text-align: left;
+    }
+    blockquote {
+        border: 1px solid #406890;
+        padding: 5px 20px;
+        margin: 5px 0;
+        color: #40906f;
+        border-radius: 4px;
+        border-left: 8px solid #406890;
+    }
+    code {
+        border-radius: 2px;
+    }
+    p code {
+        color: navajowhite;
+        padding: 0 3px;
+        display: inline-block;
+        background: #00000047;
     }
 </style>
