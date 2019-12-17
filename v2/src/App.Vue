@@ -22,6 +22,10 @@
 </script>
 
 <style>
+    ::selection {
+        color: gold;
+        background-color: purple;
+    }
     html, body, #app {
         height: 100%;
         width: 100%;
