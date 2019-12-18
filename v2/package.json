@@ -4,7 +4,7 @@
   "description": "vuejs blog github-page",
   "private": true,
   "scripts": {
-    "build": "webpack && npm run deploy",
+    "build": "webpack --mode=production && npm run deploy",
     "deploy": "find ../blog-v2 -type f ! -name \"*.md\"|xargs rm -f && mv -i -f ./blog-v2/*  ../blog-v2",
     "start": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"

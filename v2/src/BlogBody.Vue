@@ -38,7 +38,7 @@
         font-size: 1.2rem;
         max-width: 780px;
         padding-right: 29px;
-        border-right: 1px solid grey;
+        border-right: 1px solid black;
         height: 100%;
         flex-shrink: 0;
         padding-left: 20px;

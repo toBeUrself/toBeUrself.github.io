@@ -11,14 +11,12 @@
         },
         computed: {
             getFileName: function () {
-                return (this.fileOptions && this.fileOptions.name) 
-                        ? this.fileOptions.name.split('.')[0] 
-                        : '文件名为空'
+                return this.fileOptions.name || '文件名为空'
             }
         },
         methods: {
             clickFile: function () {
-                busSvc.$emit('file-click', this.fileOptions.download_url)
+                busSvc.$emit('file-click', this.fileOptions)
             }
         }
     }
@@ -35,5 +33,8 @@
         cursor: pointer;
         font-size: 1rem;
         list-style-type: none;
+    }
+    .file:hover {
+        color: white;
     }
 </style>

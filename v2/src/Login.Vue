@@ -20,6 +20,6 @@
 <style>
     .login {
         width: 100%;
-        height: 150px;
+        height: 50px;
     }
 </style>

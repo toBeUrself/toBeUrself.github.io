@@ -3,13 +3,13 @@
         <div class="menu-body">
             <div class="blog-title">
                 <h1>ToBeUrSelf 之点滴</h1>
-                <p>作者：<a href="https://tobeurself.github.io/resume.html" target="_blank">刘泽运@前端</a></p>
+                <p>作者：<a href="https://tobeurself.github.io/resume.html" target="_blank">{{theAuthor}}</a></p>
             </div>
             <div class="blog-search">
                 <input placeholder="搜索..." type="text" />
             </div>
             <div class="blog-menu-tree">
-                <folder :folder-options="folderOptions"></folder>
+                <folder v-for="blog in blogList" :folder-options="blog"></folder>
             </div>
         </div>
         <div class="menu-bar" @mousedown="menuBarDragStart"></div>
@@ -17,23 +17,21 @@
 </template>
 
 <script>
-    import { GetBlogsList } from './Constants'
+    import { author, GetBlogsList } from './Constants'
     import Folder from './Folder.vue'
 
     export default {
         name: 'BlogMenu',
         data: () => {
             return {
+                theAuthor: author,
                 mouseMove: {
                     moveStart: 0,
                     moveEnd: 0,
                     distance: 0,
                 },
                 menuWidth: 300,
-                folderOptions: {
-                    name: 'blogs',
-                    url: GetBlogsList,
-                },
+                blogList: GetBlogsList,
             }
         },
         components: {
@@ -75,7 +73,11 @@
         height: 20px;
         width: 100%;
         border: 0;
-        background: grey;
+        color: white;
+        background: black;
+        margin-right: 10px;
+        border-radius: 3px;
+        padding: 0 5px;
     }
     ::-webkit-input-placeholder {
         color: purple;
@@ -97,10 +99,9 @@
         box-shadow: 1px -50px 35px -12px black;
     }
     .menu-bar {
-        border: 0.5px solid grey;
+        border: 3px solid black;
         height: 100%;
         flex-shrink: 0;
-        margin-left: 2px;
         cursor: col-resize;
     }
     .menu-body {

@@ -1,15 +1,18 @@
 <template>
     <div class="blog-block">
         <login></login>
+        <page-edit></page-edit>
     </div>
 </template>
 
 <script>
     import Login from './Login.vue'
+    import PageEdit from './PageEdit.vue'
     export default {
         name: 'BlogBlock',
         components: {
             Login,
+            PageEdit,
         }
     }
 </script>
