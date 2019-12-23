@@ -10,18 +10,28 @@
     import File from './File.vue'
     export default {
         name: 'Folder',
-        data: () => {
+        data () {
             return {
                 menuList: [],
                 maxHeight: 20,
-                isOpen: false,
+                isOpen: this.open,
             }
         },
         components: {
             File,
         },
         props: {
-            folderOptions: Object,
+            folderOptions: {
+                type: Object,
+                required: true,
+                validator (value) {
+                    return typeof value === 'object'
+                },
+            },
+            open: {
+                type: Boolean,
+                default: false,
+            },
         },
         computed: {
             getHeight: function () {
