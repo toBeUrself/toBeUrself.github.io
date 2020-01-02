@@ -3,7 +3,7 @@
 </template>
 
 <script>
-    import { marked, busSvc, EditableState } from './Constants'
+    import { marked, busSvc, EditableState, fetchGet } from './Constants'
 
     export default {
         name: 'MarkedDown',
@@ -54,9 +54,7 @@
                 if (['png', 'jpg', 'jpeg', 'gif'].indexOf(fileType) > -1) {
                     return this.rawHtml = url
                 }
-                fetch(url).then(res => {
-                    return res.text()
-                }).then(html => {
+                fetchGet(url, 'text').then(html => {
                     this.rawHtml = html
                 })
             },

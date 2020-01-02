@@ -5,7 +5,8 @@
 </template>
 
 <script>
-    import { DefaultPage } from './Constants'
+
+    import { DefaultPage, fetchGet } from './Constants'
     import MarkedDown from './MarkedDown.vue'
     export default {
         name: 'BlogBody',
@@ -22,9 +23,7 @@
         },
         methods: {
             getRawHtml: function (url) {
-                fetch(url).then(res => {
-                    return res.text()
-                }).then(html => {
+                fetchGet(url, 'text').then(html => {
                     this.rawHtml = html
                 })
             }

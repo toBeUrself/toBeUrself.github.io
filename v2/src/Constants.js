@@ -4,10 +4,11 @@ import hljs from 'highlight.js/lib/highlight'
 import javascript from 'highlight.js/lib/languages/javascript'
 
 export const author = '刘泽运@前端'
+export const authorRequest = 'client_id=35f234d9b37bdaaa11dd&client_secret=af87943040e72403431ebca2a3335411d0fee9fa'
 export const siteIcon = 'https://raw.githubusercontent.com/toBeUrself/toBeUrself.github.io/master/img/app-48.png'
 export const DefaultPage = 'https://raw.githubusercontent.com/toBeUrself/blogs/master/README.md'
 export const GithubAuth = 'https://github.com/login/oauth/authorize?client_id=35f234d9b37bdaaa11dd'
-export const GithubAccess = 'https://github.com/login/oauth/access_token?client_id=35f234d9b37bdaaa11dd&client_secret=af87943040e72403431ebca2a3335411d0fee9fa&code='
+export const GithubAccess = 'https://github.com/login/oauth/access_token?code='
 export const GithubUserInfo = 'https://api.github.com/user?'
 export const GetBlogsList = [{
   name: 'blogs',
@@ -25,6 +26,17 @@ export const GetBlogsList = [{
   name: 'vue-next',
   url: 'https://api.github.com/repos/vuejs/vue-next/contents?ref=master'
 },]
+
+export const fetchGet = function (url, type) {
+  if (url.includes('?')) {
+    url += `&${authorRequest}`
+  } else {
+    url += `?${authorRequest}`
+  }
+  return fetch(url).then(res => {
+    return type === 'text' ? res.text() : res.json()
+  })
+}
 
 export const EditableState = {
   isEditable: false

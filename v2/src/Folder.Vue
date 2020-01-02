@@ -7,6 +7,7 @@
 </template>
 
 <script>
+    import { fetchGet } from './Constants'
     import File from './File.vue'
     export default {
         name: 'Folder',
@@ -58,9 +59,7 @@
                 this.isOpen = !this.isOpen
             },
             getMenuList: function (url) {
-                fetch(url).then(res => {
-                    return res.json()
-                }).then(list => {
+                fetchGet(url, 'json').then(list => {
                     this.menuList = list || []
                 })
             },
