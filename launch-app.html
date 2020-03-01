@@ -11,8 +11,13 @@
     <script>
         function launchApp() {
             window.location.href = 'PAYiDai://'
-            setTimeout(function () {
-                window.location.href = 'http://itunes.apple.com/cn/app/id884007229'
+            const now = new Date().valueOf()
+            const timer = setTimeout(function () {
+                if (new Date().valueOf() - now > 2000) {
+                    clearTimeout(timer)
+                } else {
+                    window.location.href = 'http://itunes.apple.com/cn/app/id884007229'
+                }
             }, 2000)
         }
     </script>
