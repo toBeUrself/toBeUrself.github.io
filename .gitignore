@@ -1,5 +1,0 @@
-﻿# 忽略整个文件夹
-/node_modules/
-/v2/node_modules/
-/dist/
-*.js.map
