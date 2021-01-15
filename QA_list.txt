@@ -439,50 +439,538 @@
 		让这些变量的值始终保存在内存中（闭包使得JS的垃圾回收机制GC不会收回外部函数所占用的资源，因为外部函数的内部函数的执行需要依赖外部函数中的变量）
 
 47. javascript 代码中的 "use strict"; 是什么意思 ? 使用它区别是什么？
+	"严格模式"是一种在JS代码运行时自动实行更严格解析和错误处理的方法。这种模式使得JS在更严格的条件下运行。
+	优点：
+		消除JS语法的一些不合理、不严谨之处，减少一些怪异行为
+		消除代码运行的一些不安全之处，保证代码运行的安全
+		提高编译器效率，增加运行速度
+		为未来新版本JS做好铺垫
+	IE6，7，8，9不支持严格模式
+
 48. 如何判断一个对象是否属于某个类？
+	instanceof
+
 49. instanceof 的作用？
+	运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。
+
 50. new 操作符具体干了什么呢？如何实现？
+	运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象的实例。
+	new 关键字会进行如下的操作：
+
+		创建一个空的简单JavaScript对象（即{}）；
+		链接该对象（设置该对象的constructor）到另一个对象 ；
+		将步骤1新创建的对象作为this的上下文 ；
+		如果该函数没有返回对象，则返回this。
+
+	function create(C, ...args) {
+		const o = Object.create(C.prototype)
+		const res = C.call(o, ...args)
+		return typeof res === 'object' ? res : o
+	}
+	bject.create()方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__。
+
 51. Javascript 中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？
+	Object.getOwnProperty
+	Object.keys
+
 52. 对于 JSON 的了解？
+	JSON 是一种取代XML的数据结构，和XML相比，它更小巧但描述能力不差，网络传输数据将减少更多的流量从而加快速度，是一种轻量级的数据交换格式。
+
 53. [].forEach.call($$(""),function(a){a.style.outline="1px solid #" (~~(Math.random()(1<<24))).toString(16)}) 能解释一下这段代码的意思吗？
+
+
 54. js 延迟加载的方式有哪些？
+	js实现延迟加载的几种方法，js的延迟加载有助于提高页面的加载速度。
+	js延迟加载，也就是等页面加载完成之后再加载JS文件。
+	一般有如下几种方式：
+		defer 属性
+		async 属性
+		动态创建DOM方式
+		使用setTimeour延迟方法
+		让js最后加载
+	defer：
+		HTML 4.0.1为script标签定义了defer属性，告诉浏览器立即下载，但“延迟执行”。表明脚本在执行时不会影响页面的构造，也就是说，脚本会被延迟到整个页面都解析完毕之后再执行。支持HTML 5 的实现会忽略前乳脚本设置的 defer 属性。
+	async：
+		HTML 5 为script标签定义了async属性。与defer属性类似，都用于改变处理脚本的行为。同样，只适用于外部脚本文件。不让页面等待脚本下载和执行，从而一步加载页面其他内容。移步脚本一定会在页面的load事件前执行。
+		不能保证脚本会按顺序执行。
+	动态创建DOM方式：
+		在页面onload事件中动态添加script标签，以达到页面加载完毕后下载js的目的。
+	使用setTimeour延迟方法：
+		把js代码用setTimeout放在宏任务中异步执行。
+	让js最后加载:
+		把js外部引入的文件放到页面底部，来让js最后引入，从而加快页面加载速度。
+
 55. Ajax 是什么? 如何创建一个 Ajax？
+	Ajax 并不算是一种新的技术，全称是 asynchronous javascript and xml，可以说是已有技术的组合，主要用来实现客户端与服务器端的异步通信效果，实现页面的局部刷新，早期的浏览器并不能原生支持ajax，可以使用隐藏帧方式变相实现异步效果，后来浏览器提供了对ajax的原生支持，使用ajax原生方式发送请求主要通过XMLHttpRequest（标准浏览器）、ActiveXObject（IE 浏览器）对象实现异步通信效果。
+	ajax是基于现有的Internet标准，并且联合使用它们：
+		XMLHttpRequest对象（异步的与服务器交换数据）
+		JavaScript/DOM（信息显示/交互）
+		CSS （给数据定义样式）
+		XML （作为转换数据的格式）
+	ajax的优点
+		页面局部刷新，用户体验好
+		异步通信，更加快的响应能力
+		减少冗余请求，减轻了服务器负担；按需获取数据，节约带宽资源
+		基于标准化的并被广泛支持的技术，不需要下载插件或者小程序。
+	缺点：
+		ajax干掉了浏览器部分的back和收藏书签功能，即对浏览器后退机制的破坏。
+		存在一定的安全问题，AJAX暴露了与服务器交互的细节。
+		对搜索引擎的支持比较弱
+		破坏了程序的异常机制
+		无法用URL直接访问
+	创建AJAX的步骤：
+		AJAX的原理简单来说通过XMLHTTPREQUEST对象来向服务器发送异步请求，从服务器或侧数据，然后用js来操作DOM而更新页面。这其中最关键的一步就是从服务器获得请求数据。
+	ajax过程：
+		1）创建XMLHttpRequest对象，也就是创建一个异步调用对象
+		2）创建一个新的HTTP请求，并指定该HTTP请求的方法，URL及验证信息
+		3）设置响应HTTP请求状态变化的函数
+		4）发送HTTP请求
+		5）获取异步调用返回的数据
+		6）使用JS和DOM实现局部刷新
+
+		let xhr
+		if (window.XMLHttpRequest) {
+			xhr = new XMLHttpRequest()
+		} else {
+			// IE 5, 6浏览器
+			xhr = new ActiveXObject('Microsoft.XMLHTTP')
+		}
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState === 4 && xhr.status === 200) {
+				console.log(xhr.responseText)
+			}
+		}
+		xhr.open('GET', 'ajax_info.txt', true)
+		xhr.send()
+
 56. 谈一谈浏览器的缓存机制？
+	浏览器的缓存机制也就是我们说的HTTP缓存机制，其机制是根据HTTP报文的缓存标识进行的。
+	HTTP报文分为两种：请求报文 和 响应报文，都有通用信息头，请求头/响应头，实体头
+	缓存过程分析：
+		浏览器与服务器通信的方式为应答模式，即，浏览器发起HTTP请求，服务器响应对应请求。
+		浏览器会根据响应报文中HTTP头的缓存标识，决定是否缓存结果。
+	缓存位置：
+		Service Worker：运行在浏览器背后的独立线程，一般可以用来实现缓存功能，离线web应用。与浏览器的缓存机制不一样，可以开发者自己控制。
+		Memory Cache：主要包含当前页面中已经抓取到的资源，样式，脚本和图片等，读取速度快，但是缓存持续性很短，随着进程释放而释放，关闭Tab页面就被释放。有一块重要的缓存资源是preloader相关指令（例如<link rel="prefetch">）下载的资源。
+		Disk Cache：读取速度慢点，但是什么都能存储到磁盘中，比之Memory Cache胜在容量和存储时效性上。
+			对于浏览器会把那些文件丢进内存，那些丢进硬盘中，没有具体的参考，比较靠谱的是：
+				对于大文件来说，大概率是不存储在内存中的，反之亦然。
+				当前系统内存使用率高的话，文件优先存储进硬盘。
+		Push Cache：推送缓存，是HTTP/2中的内容，当以上三种缓存都没有命中时，它才会被使用。只会在会话（Session）中存在，一旦会话结束就被释放，并且缓存时间也很短暂，在Chrome中只有5分钟左右，同时它也并非严格执行HTTP头中的缓存指令。
+
+	强制缓存 与 协商缓存：根据是否需要向服务器重新发送HTTP请求。强制缓存优先级高于协商缓存。
+	HTTP缓存的基本目的是使应用执行的更快，更易扩展，但是HTTP缓存通常只适用于idempotent request（可以理解为查询请求），也就是不更新服务端数据的请求），这就导致了在HTTP的世界里，一般都是对Get请求做缓存，Post请求很少有缓存。（是否没有直接说Post请求不能缓存啊！）
+	强制缓存：
+		强制缓存就是向浏览器缓存查找该请求结果，并根据该结果的缓存规则来决定是否使用该缓存结果的过程，强制缓存的情况主要有三种：
+			1）不存在该缓存结果和缓存标识，强制缓存失效，则直接向该服务器发起请求（跟第一次发起请求一致）
+			2）存在该缓存结果和缓存标识，但是结果已经失效，强制缓存失效，则使用协商缓存
+			3）存在该缓存结果和缓存标识，且该结果没有失效，强制缓存生效，直接返回该结果。
+		强制缓存的规则：当浏览器向服务器发送请求的时候，服务器会将缓存规则放入HTTP响应报文的实体头中，控制强制缓存的字段分别是Expires和Cache-Control，其中Cache-Control的优先级比Expires高。
+		Expires：是HTTP/1.0 的字段，但是现在浏览器的默认使用的是HTTP/1.1，Expires已经被Cache-Control替代，原因在于Expires控制缓存的原理是使用客户端的时间与服务器返回的时间做对比，如果客户端与服务器的时间由于某些原因（时区不同，有一方时间不准）发生误差，那么强制缓存直接失效，就毫无意义。
+		Cache-Control：在HTTP/1.1 中，是最重要的规则，主要用于控制网页缓存，主要取值为：
+			1）public：所有内容都将被缓存（客户端和代理服务器都可以缓存）
+			2）private：所有内容只有客户端可以，默认取值
+			3）no-cache：客户端缓存内容，但是是否使用缓存则需要经过协商缓存来验证决定
+			4）no-store：所有内容都不会被缓存，即不使用强制缓存，也不使用协商缓存
+			5）max-age=xxx(xxx is numberic)：缓存内容将在xxx秒后失效
+		HTTP响应报文中，expires的时间值是一个绝对值，Mon, 16 Apr 2018 01:41:50 GMT，而Cache-Control是相对值，在无法确定客户端的时间是否与服务端的时间同步的情况下，Cache-Control相比于expires是更好的选择，所以同时存在时，只有Cache-Control生效。
+		缓存存放位置：from memory cache代表使用内存中的缓存 和 from disk cache代表使用的是硬盘中的缓存，浏览器读取缓存的顺序为memory -> disk。
+	协商缓存就是强制缓存失效后，浏览器携带缓存标识向服务器发起请求，由服务器根据缓存标识决定是否使用缓存的过程，主要有两种情况：
+		1）协商缓存生效，返回304
+		2）协商缓存失败，返回200
+		控制协商缓存的字段分别有：Last-Modified/If-Modified-Since和Etag/If-None-Match，其中Etag/If-None-Match的优先级比Last-Modified/If-Modified-Since高
+		Last-Modified：服务器响应请求时，返回该资源文件在服务器最后被修改的时间
+		If-Modified-Since：客户端再次发起该请求时，携带上次请求返回的Last-Modified值，通过此字段值告诉服务器该资源上次请求返回的最后被修改时间。服务器收到该请求，发现请求头含有If-Modified-Since字段，则会根据该字段的值与该资源在服务器的最后被修改时间做对比，如服务器的资源最后被修改时间大于If-Modified-Since的字段值，则重新返回资源，状态码为200，否则返回304，代表资源无更新，可继续使用缓存文件。
+		Etag：是服务器响应请求时，返回当前资源文件的一个唯一标识（由服务器生成）
+		If-None-Match：是客户端再次发起该请求时，携带上次请求返回的唯一标识Etag值，通过此字段告诉服务器该资源上次请求返回的唯一标志值。和If-Modified-Since的功能差不多。
+
+
 57. Ajax 解决浏览器缓存问题？
+	禁止浏览器缓存功能有如下几种方法：
+	1）在ajax发送请求前加上ajax.setRequestHeader('If-Modified-Since', '0')
+	2）在ajax发送请求前加上ajax.setRequestHeader('Cache-Control', 'no-cache')
+	3）在url后面加上一个随机数：fresh=Math.random()
+	4）在url后面加上时间搓：nowtime=Date.now() // 和加随机数一样的道理
+
 58. 同步和异步的区别？
+
 59. 什么是浏览器的同源政策？
+	是一个重要的安全策略，它用于限制一个origin的文档或者它加载的脚本如何能与另一个源的资源进行交互。它能帮助阻隔恶意文档，减少可能被攻击的媒介。
+	如果两个 URL 的 protocol、port (如果有指定的话)和 host 都相同的话，则这两个 URL 是同源。这个方案也被称为“协议/主机/端口元组”，或者直接是 “元组”。（“元组” 是指一组项目构成的整体，双重/三重/四重/五重/等的通用形式）。
+
 60. 如何解决跨域问题？
+	同源策略限制的情况：
+		1）Cookie、LocalStorage和IndexDB无法读取
+		2）DOM和Js对象无法获取
+		3）AJAX请求不能发送
+	注意：对于像img、iframe、script等标签的src属于特例，他们是可以访问非同源网站的资源的。
+	解决跨域方法：
+		1）HTTP响应头里面加上Access-Control-Allow-Origin字段，值可以是*或者包括该网页域名。
+		2）JSONP方式，借助script标签的src属性，需要后端返回可执行的脚本，需要后端的配合。
+		3）把请求发到自己的（同源的后端服务器），通过服务器跨域取请求服务。
+		4）利用nginx转发，原理和上面通过服务器转发差不多。都是利用后端没有同源策略。
+
 61. 服务器代理转发时，该如何处理 cookie？
+	Cookie 或 Session 技术的应用，解决了HTTP协议的一个问题--无法保持客户状态，因此它现在被广泛应用于各种Web站点中。
+	HTTP应用代理：接收用户请求，根据用户请求的URL去真正的目标服务器取回目标页面，再根据不同应用的要求作出相应处理后返回给用户。
+	应用代理需要处理好Cookie和Session的传递、更新和废除等问题。
+	Cookie 是 Web 服务器向用户的浏览器发送的一段ASCII码文本。一旦收到Cookie，浏览器会把Cookie的信息片段以“名/值”对（name-value pairs）的形式存储保存在本地。这以后，每当向同一个Web服务器请求一个新的文档时，Web浏览器都会发送站点存储在本地的Cookie。创建Cookie的最初目的是想让Web服务器能够通过多个HTTP请求追踪客户。有些复杂的网络应用需要在不同的页面之间保持一致，他们需要这种会话状态的保持能力。
+	浏览器与Web服务器通过HTTP协议进行通讯，而Cookie就是保存在HTTP协议的请求或者应答头部。
+	在HTML文档被发送之前，Web服务器通过传送HTTP包头中的Set-Cookie消息把一个cookie发送到用户的浏览器中。
+	完整的Set-Cookie头：
+		Set-Cookie: customer=huangxp; path=/foo/; domain=.ibm.com;
+		expires= Wednesday, 19-OCT-05 23:12:40 GMT; [secure]   
+	Set-Cookie的每个属性解释：
+		1. customer=huangxp一个"名称=值"对，把名称customer设置为值"huangxp"，这个属性在Cookie中必须有。
+		2. path=/foo/控制哪些访问能够出发cookie的发送，如果没有制定path，cookie会在所有对此站点HTTP发送时发送。如果path=/directory/，只有访问该目录下的网页时，cookie才被发送。在这个例子中，用户在访问目录/foo/下的内容时，浏览器将发送此cookie。如果指定了path，但是path与当前访问的URL不符，则此cookie将被忽略。
+		3. domain=.ibm.com指定cookie被发送到哪台计算机上。正常情况下，cookie只被送回最初发送cookie的计算机。在这个例子中，cookie会被发送到任何在.ibm.com域中的主机。如果domain被设置为空，domain就别设置为和提供cookie的Web服务器相同。如果domain不为空，并且它的值又和cookie的Web服务器域名不符，这个Cookie将被忽略。
+		4. expires= Wednesday, 19-OCT-05 23:12:40 GMT;  指定cookie失效的时间。如果没有制定失效时间，这个cookie就不会被写入计算机的硬盘上，并且只持续到这次会话结束。
+		5. [secure] 如果secure这个词被作为Set-Cookie头的一部分，那么cookie只能通过完全通道传输（目前即SSL通道）。否则，浏览器将忽略此Cookie。
+
+
 62. 简单谈一下 cookie ？
+	cookie是服务器提供的一种用于维护会话状态信息的数据，通过服务器发送到浏览器，浏览器保存在本地，当下一次有同源的请求时，将保存的cookie值添加到请求头部，发送给服务端。这可以用来实现记录用户登录状态等功能。cookie一般可以存储4k大小的数据，并且只能够被同源的网页所共享访问。
+
+	服务器端可以使用Set-Cookie的响应头部来配置cookie信息。一条cookie包括了五个属性值expires、domain、path、secure、HttpOnly。其中expires制定了失效时间，domain是域名、path是路径、domain和path一起限制了cookie能够被哪些URL访问。secure规定了cookie只能在确保安全的情况下传输，HttpOnly规定了这个cookie只能被服务器访问，不能使用js 脚本访问。
+
+	在发生跨域请求的时候，即使是同源下的cookie，也不会被自动添加到请求头部，除非显示的规定。
+
 63. 模块化开发怎么做？
+	https://www.cnblogs.com/chenguangliang/p/5856701.html
+	什么是模块化开发：
+		1. 模块就是一个有特定功能的文件，我们可以通过加载这些模块得到特定的功能。
+		2. 模块化开发就是js的功能分离，通过需求引入不同的文件。
+		3. 模块化开发可以使代码耦合度降低，避免代码多次在页面出现，他最大的作用就是重用。
+	模块开发遵循的规范：
+		1. AMD（RequireJS）规范也叫异步模块加载规范，在这个规范下模块会异步加载，不影响后面语句的执行，我们可以使用define定义模块，使用require调用模块。
+		2. CommonJS规范是服务器端模块的规范，nodejs就采用了这个规范，每个模块都有一个单独的作用域，模块内部的变量无法被其他模块读取，除非定义为global对象和属性。
+		3. CMD（SeaJS）规范通用模块定义，CMD是按需加载，一个模块就是一个文件。
+	当module.exports和exports都存在，以module.exports为准，因为exports是module.exports的快捷方式，指向的仍然是原来的地址。return也可以暴露接口，优先级为return > module.exports > exports。
+	模块引用（require）模块定义（exports）模块标识（module）
+	require() 用来引用外部模块；
+	exports对象用于导出当前模块的方法或变量，唯一的导出口；
+	module对象就代表模块本身。
+	虽说Node遵循CommonJS的规范，但是相比也是做了一些取舍，填了一些新东西的。
+	浏览器不兼容CommonJS的根本原因，在于缺少四个Node.js环境的变量。
+		module
+		exports
+		require
+		global
+	只要能够提供这四个变量，浏览器就能加载CommonJS模块。示例：
+	var module = {
+		exports: {}
+	}
+	;(function (module, exports) {
+		exports.multiply = function (n) { return n * 1000 }
+	}(module, module.exports))
+	var f = module.exports.multiply
+	f(5) // 5000
+	上面代码向一个立即执行函数提供一个module和exports两个外部变量，模块就放在这个立即执行函数里面。模块的输出值放在module.exports之中，这样就实现了模块的加载。
+
+	Browserify的实现，Browserify是目前最常用的CommonJS格式转换的工具：
+		// foo.js
+		module.exports = function (x) {
+			console.log(x)
+		}
+
+		// main.js
+		var foo = require('./foo')
+		foo('Hi')
+	使用下面的命令，可以将main.js转为浏览器可用的格式。
+		browserify main.js > compiled.js
+	browserify将所有模块放入一个数组，id属性是模块的编号，source属性是模块的源码，deps属性是模块的依赖。
+	因为main.js里面加载了foo.js，所有deps属性就制定了./foo对应1号模块。执行的时候，浏览器遇到require('./foo')语句，就自动执行1号模块的source属性，并将执行后的module.exports属性值输出。
+
+	原则上是导入模块的时候，执行模块中的代码，并注入module，module.exports变量，作为与宿主模块沟通的接口。其他诸如匹配正确的文件名，匹配相对路径，做起来不难。
+  AMD：
+  	基于commonJS规范的nodeJS出来以后，服务器的模块概念已经形成，很自然地，大家就想要客户端模块。而且最好两者能够兼容，一个模块不用修改，在服务器和浏览器都可以运行。但是，由于一个重大的局限，使得CommonJS规范不适用于浏览器环境。
+  		const math = require('math')
+  		math.add(2, 3)
+  	第二行代码必须等待math.js加载完成。也就是说，如果加载时间很长，整个应用就会停在那里等。require是同步的。
+  	这对服务器端不是一个问题，因为所有的模块都放在本地磁盘，可以同步加载完成，等待时间就是硬盘的读取时间。
+  	但是对于浏览器，这却是一个大问题，因为模块都放在服务端，等待时间取决于网速的快慢，可能要等很长时间，浏览器处于‘假死’状态。
+  	因此浏览器端的模块，不能采用‘同步加载’，只能采用‘异步加载’，这就是AMD规范诞生的背景。
+  	也采用require（）语句加载模块，但是不同于CommonJS，它要求两个参数：
+  		require([module], callback)
+  		如：
+  		require('math', function (math) {
+  			math.add(2, 3)
+  		})
+  	通过回调函数来实现异步加载模块。
+
+
+
 64. js 的几种模块规范？
 65. AMD 和 CMD 规范的区别？
 66. ES6 模块与 CommonJS 模块、AMD、CMD 的差异。
+	ES6的模块不是对象，import命令会被JS引擎静态分析，在编译时就引入模块代码，而不是在代码运行时加载，所以无法实现条件加载。也正是因为这个，使得静态分析成为可能。
+	特征：
+		严格模式，ES6的模块自动采用严格模式
+		read-only特性，import的属性是只读的，不能赋值，类似于const的特性
+		export/import提升，必须位于模块顶级，不能位于作用域内，其次对于模块内的import/export会提升到模块顶部，这是在编译阶段完成的
+	差异：
+		CommonJS输出值的拷贝，es6输出一个只读的引用
+		CommonJS运行时加载，是对象，es6模块不是对象，而是通过export命令显示指定输出的代码，import时采用静态命令的形式。即在import时可以指定加载某个输出值，而不是加载整个模块，这种加载称为“编译时加载”。模块内部引用的变化，会反应在外部。
+
 67. requireJS 的核心原理是什么？（如何动态加载的？如何避免多次加载的？如何 缓存的？）
+	https://www.cnblogs.com/chenguangliang/p/5856701.html
+	当文件越来越多，需要很多script标签加载文件，文件之间有依赖性，需要严格保证加载顺序，当依赖关系很复杂的时候，代码的编写和维护都会变得困难。
+	优点：
+		1）实现js文件的异步加载，避免网页失去响应
+		2）管理模块之间的依赖性，便于代码的编写和维护。
+	使用全局define函数，如commonJS中modules一样可以缓存模块，找不到在加载，避免重复加载。
+	所有模块必须使用define函数定义，才能符合规范。
+
+
 68. JS 模块加载器的轮子怎么造，也就是如何实现一个模块加载器？
+
 69. ECMAScript6 怎么写 class，为什么会出现 class 这种东西?
+	function Person (name, age) {
+		this.name = name
+		this.age = age
+	}
+	Person.prototype.sayName = function () {
+		console.log(this.name)
+	}
+	const p = new Person('tim', 28)
+	使用prototype实现继承的写法跟传统的面相对象语言（比如C++和JAVA）差异很大，很容易让新学习这门语言的程序员感到困惑。
+	提供class关键字，作为语法糖，让对象原型的写法更加清晰、更像面向对象编程的语法而已。
+
+	没有变量提升、必须用new调用、类的方法不可枚举、extends 继承、super关键字、自动使用严格模式等与原始方式存在差异。
+
+
 70. documen.write 和 innerHTML 的区别？
+	document.write()和innerHTML都能够动态地向文档中添加标记。
+	区别：
+		①document.write()必须使用script标签才能被调用。违背了“行为与表现分离的原则”，即无法实现JavaScript和HTML的分离。
+		②document.write()容易导致验证错误。比如在例①中，<script>标签后面很容易认为是<p>标签，而在<script>标签后面打开<p>标签是非法的。事实上，那个“<p>”和“</p>”只不过是一个将被插入文档的字符串的组成部分而已。
+		③document.write与MIME类型application/xhtml+xml不兼容，浏览器在呈现这种XHTML文档时根本不会执行document.write()方法。
+		④document.write()仅支持写入。
+		⑤innerHTML可以实现JavaScript和HTML的分离。
+		⑥innerHTML既支持读取，又支持写入。
+
+		综上所述：推荐使用innerHTML，不推荐使用document.write()。
+	拓展：$(document).ready和window.onload的区别
+		$(document).ready和window.onload都是在都是在页面加载完执行的函数，大多数情况下差别不大，但也是有区别的。
+
+		$(document).ready:是DOM结构绘制完毕后就执行，不必等到加载完毕。 意思就是DOM树加载完毕，就执行，不必等到页面中图片或其他外部文件都加载完毕。并且可以写多个.ready。
+
+		window.onload:是页面所有元素都加载完毕，包括图片等所有元素。只能执行一次。
+
+
+		所以，$(document).ready的执行时间要早于window.onload。并且可以写多个
+
 71. DOM 操作——怎样添加、移除、移动、复制、创建和查找节点？
+	1）创建新节点
+      createDocumentFragment()    //创建一个DOM片段
+      createElement()   //创建一个具体的元素
+      createTextNode()   //创建一个文本节点
+（2）添加、移除、替换、插入
+      appendChild()
+      removeChild()
+      replaceChild()
+      insertBefore()
+（3）查找
+      getElementsByTagName()    //通过标签名称
+      getElementsByName()    //通过元素的Name属性的值
+      getElementById()    //通过元素Id，唯一性
+（4）复制
+ 			element.cloneNode // 分深复制和浅复制
+
 72. innerHTML 与 outerHTML 的区别？
+1）innerHTML:
+　　从对象的起始位置到终止位置的全部内容,不包括Html标签。
+2）outerHTML:
+　　除了包含innerHTML的全部内容外, 还包含对象标签本身。
+3）需要注意的是outerHTML属性只有IE浏览器才有，其它浏览器是不支持的
+
 73. .call() 和 .apply() 的区别？
+	/*apply()方法*/
+function.apply(thisObj[, argArray])
+
+/*call()方法*/
+function.call(thisObj[, arg1[, arg2[, [,...argN]]]]);
+共同点：
+	将一个函数的对象上下文从初始的上下文改变为由thisObj指定的新对象。
+不同点：
+	传入的参数列表形式不同 call()接受一个一个的参数，apply()接收一个参数数组。
+
 74. JavaScript 类数组对象的定义？
+	只包含使用从零开始，且自然递增的整数做键名，并且定义了length表示元素个数的对象，我们就认为他是类数组对象！
+
 75. 数组和对象有哪些原生方法，列举一下？
+
 76. 数组的 fill 方法？
+
 77. [,,,] 的长度？
+	在大多数编程语言中，数组是连续的值序列。在 JavaScript 中，Array 是一个将索引映射到元素的字典。它可以存在空洞（holes） —— 零和数组长度之间的索引没有映射到元素（“缺失索引”）
+	快数组和慢数组的的区别
+		https://cloud.tencent.com/developer/article/1554526
+
 78. JavaScript 中的作用域与变量声明提升？
+	1）全局作用域
+	2）函数作用域
+	3）ES6新增的 let, const 局部作用域
+	4）var,function 声明会在编译阶段提升，let, const不会，并会把作用域锁住，在声明前使用，会报错。
+	
+
 79. 如何编写高性能的 Javascript ？
+	1）遵循严格模式：'use strict'
+	2）将js放在页面底部，加快渲染页面
+	3）将js脚本成组打包，减少请求
+	4）使用非阻塞方式下载js脚本
+	5）尽量减少使用闭包
+	6）缓存DOM节点的访问
+	7）避免使用eval和function构造器
+	8）给setTimeout() 和 setInterval() 传递函数而不是字符串作为参数
+	9）尽量使用直接量创建对象和数组
+	10）最小化重绘和回流
+
+
 80. 简单介绍一下 V8 引擎的垃圾回收机制
+	0）标记清除
+	1）引用计数法
+	2）根搜索算法
+
 81. 哪些操作会造成内存泄漏？
+	内存泄漏是指一块被分配的内存既不能使用，又不能回收，直到浏览器进程结束。
+	JS垃圾回收机制：找出不再使用的变量，然后释放掉其占用的内存，但是这个过程不是实时的，因为其开销比较大，所以垃圾回收系统GC会按照固定的时间间隔，周期性的执行。
+	代码不当导致内存泄漏：
+		1）意外的全局变量引起的内存泄漏
+			function leaks () {
+				leak = 'tim'
+			}
+		2）闭包引起的内存泄露
+			function bindEvent () {
+				var name = 'tim'
+				var obj = document.createElement('div')
+				obj.onclick = function () {
+					console.log(name)
+				}
+			}
+		3) 没有清理的DOM元素引用
+			有些Dom元素用变量引用后，如果只删除Dom元素，没有删除变量，那么Dom对象还是会在内存中的。
+		4）被遗忘的定时器或者回调
+		5）子元素存在引用引起的内存泄露
+			如果有地方引用子元素，即使子元素被删除，其对象也在内存中，引用混乱导致的泄露。
+
+	循环引用会导致JSON.stringify()出错，BigInt也不能被JSON序列化
+	JSON.stringify()说明：
+		转换值如果有toJSON()方法，该方法定义什么值将被序列化。
+		非数组对象的属性不能保证以特定的顺序出现在序列化后的字符串中。
+		布尔值、数字、字符串的包装对象在序列化过程中会自动转换对应的原始值。
+		undefined 、任意的函数以及 symbol 值，在序列化过程中会被忽略（出现在非数组对象的属性中时）或者被转换成null（出现在数组中时）。函数、undefined被单独转换时，会返回undefined，如JSON.stringify(function () {}) 或 JSON.stringify(undefined))。
+		对包含循环引用的对象（对象之间相互引用，形成无限循环）执行此方法，会抛出错误。
+		所有以symbol为属性键的属性都会被忽略掉，即使replacer参数中强制指定包含了它们。
+		Date日期调用了toJSON()将其转换成为了string字符串（同Date.toISOStirng()），因此会被当作字符串处理。
+		NaN 和 Infinity 格式的数值及 null 都会被当作 null。
+		其他类型的对象，包括Map/Set/WeakMap/weakSet,仅会序列化可枚举的属性。
+
+	通过map来保存遍历的对象，如果这个对象被遍历过了，就不再处理。把该属性置为undefined或者是其他。	
+
 82. 需求：实现一个页面操作不会整页刷新的网站，并且能在浏览器前进、后退时正确响应。给出你的技术实现方案？
+	前端路由！
+	HTML5里引用新的API，就是history.pushState和history.replaceState，就是通过这个接口做到无刷新改变页面URL的。
+	虽然ajax可以无刷新改变页面内容，但无法改变页面URL。
+	其次为了更好的可访问性，内容发生改变后，改变URL的hash。
+	如何响应浏览器的前进、后退操作：
+		window对象上提供了onpopstate事件，上面传递的state对象会成为event的子对象，这样就可以拿到存储的数据了。
+
+
 83. 如何判断当前脚本运行在浏览器还是 node 环境中？（阿里）
+	判断global对象，如果是window，那就是浏览器环境，反之就是node环境。
+
 84. 把 script 标签放在页面的最底部的 body 封闭之前和封闭之后有什么区别？浏览器会如何解析它们？
+	html标签只包含head和body两个标签，解析时，所有的标签都会解析进这两个标签里边。body之前的任何位置都会解析进head里边，之后的都会解析进body里边。
+	按照HTML5标准中的HTML语法规则，如果在body后再出现<script>或任何元素的开始标签，都是parse error，浏览器会忽略之前的</body>，即视作仍旧在body内。所以实际效果和写在</body>之前没有区别的。
+	总之，这种写法虽然也能work，但是并没有带来任何的额外好处，实际上出现这种的写法很可能是误解了‘将script放在页面最末端的‘教条。所以还是不要这样写为好。
+
 85. 移动端的点击事件的有延迟，时间是多久，为什么会有？ 怎么解决这个延时？
+	https://www.jianshu.com/p/6e2b68a93c88
+	以前网页主要是为宽屏设备设计的，为了应对手机屏，做了一些约定，其中‘双击缩放’很出名。
+	如果用户点击一个链接，浏览器一开始不知道用户是要打开这个链接还是用放大还是双击滚动的操作，因此，IOS Safari 就等待300ms，以判断用户是否再次点击了屏幕。这些约定被业界复制。
+	当用户体验越来越重要后，点击后300ms的延迟变得不可忍受，才被重视起来，但是已经成为历史问题。
+	浏览器厂商的解决方案：
+		方案一：禁用缩放
+		方案二：更改默认的视口宽度
+		方案三：CSS touch-action
+	由于浏览器厂商的支持不一致，存在兼容性问题，就出现了JS自己的解决方案。
+	方案一：指针事件的polyfill
+	方案二：FashClick，转门为解决移动端浏览器300毫秒点击延迟问题所开发的一个轻量级的库。FastClick的实现原理是在检测到touchend事件的时候，会通过DOM自定义事件立即发出模拟一个click事件，并把浏览器在300ms之后的click事件阻止掉。
+
+	300ms延迟会导致点击穿透问题：
+	既然click点击有300ms延迟的问题，那么对于触摸屏，我们直接监听touchstart事件是不是可以？
+	这有两个不好的地方：
+		1）touchstart是手指触摸就触发，有时候用户只是想滑动屏幕，却触发了touchstart事件，这不是想要的结果。
+		2）使用touchstart事件在某些场景下可能会出现穿透的现象。
+
+	什么是点击穿透？
+		假如页面上有两个元素A和B。B元素在A元素之上。我们在B元素的touchstart事件上注册了一个回调函数，该回调函数的作用是隐藏B元素。我们发现，当我们点击B元素，B元素被隐藏了，随后，A元素触发了click事件。
+
+		这是因为在移动端浏览器，事件执行的顺序是touchstart > touchend > click。而click事件有300ms的延迟，当touchstart事件把B元素隐藏之后，隔了300ms，浏览器触发了click事件，但是此时B元素不见了，所以该事件被派发到了A元素身上。如果A元素是一个链接，那此时页面就会意外地跳转。
+
+
 86. 什么是“前端路由”？什么时候适合使用“前端路由”？“前端路由”有哪些优点和缺点？
+	路由是根据不同的URL地址展示不同的内容或页面。
+	前端路由就是把不同路由对应不同的内容或者页面的任务交给前端来做，之前是通过服务器根据URL的不同返回不同的页面的实现的。
+
+	什么时候使用前端路由：
+		在单页面应用，大部分内容页面结构不变，只改变部分内容的应用。
+	前端路由有什么优点和缺点？
+		1） 用户体验好，不需要每次都从服务器全部获取，快速展现给用户
+		2）使用浏览器的前进，后退键的时候会重新发送请求，没有合理地利用缓存
+		3）单页面无法记住之前滚动的位置，无法在前进，后退的时候记住滚动的位置
+
 87. 如何测试前端代码么？ 知道 BDD, TDD, Unit Test 么？ 知道怎么测试你的前端工程么(mocha, sinon, jasmin, qUnit..)？
+
+
 88. 检测浏览器版本版本有哪些方式？
+	userAgent判断厂商，检测对象方法是不是存在，做降级处理
+
 89. 什么是 Polyfill ？
+	from MDN:
+		Polyfill是一块代码（通常是Web上的JS），用来为旧浏览器提供它没有原生支持的较新的功能。
+
+		比如说polyfill可以让ie7使用Silverlight插件来模拟HTML Canval元素的功能，或模拟CSS实现rem单位的支持，或text-shadow，或者其他任何你想要的功能。
+
 90. 使用 JS 实现获取文件扩展名？
+
+
 91. 介绍一下 js 的节流与防抖？
+  // 节流
+  function debounce (fn) {
+  	let timer = null
+  	return (...args) => {
+  		clearTimeout(timer)
+  		timer = setTimeout(() => {
+  			fn.apply(this, args)
+  		}, 500)
+  	}
+  }
+  // 防抖
+	function throttle (fn) {
+		let canDo = true
+		let timer = null
+		return (...args) => {
+			if (!canDo) {
+				return
+			}
+			canDo = false
+			fn.apply(this, args)
+			timer = setTimeout(() => {
+				canDo = true
+				clearTimeout(timer)
+			}, 300)
+		}
+	}
+	总结：
+	函数防抖：将多次操作合并为一次操作进行。原理是维护一个计时器，规定在delay时间后触发函数，但是在delay时间内再次触发的话，就会取消之前的计时器而重新设置。这样一来，只有最后一次操作能被触发。
+
+	函数节流：使得一定时间内只触发一次函数。原理是通过判断是否有延迟调用函数未执行。
+
+	区别： 函数节流不管事件触发有多频繁，都会保证在规定时间内一定会执行一次真正的事件处理函数，而函数防抖只是在最后一次事件后才触发一次函数。 比如在页面的无限加载场景下，我们需要用户在滚动页面时，每隔一段时间发一次 Ajax 请求，而不是在用户停下滚动页面操作时才去请求数据。这样的场景，就适合用节流技术来实现
+
+
 92. Object.is() 与原来的比较操作符 “===”、“==” 的区别？
 93. escape,encodeURI,encodeURIComponent 有什么区别？
 94. Unicode 和 UTF-8 之间的关系？
@@ -566,5 +1054,46 @@
 172. js 中倒计时的纠偏实现？
 173. 进程间通信的方式？
 174. 如何查找一篇英文文章中出现频率最高的单词？
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
