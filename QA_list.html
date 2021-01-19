@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>前端题册</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "PingFang SC", "Lantinghei SC", "Microsoft YaHei", "HanHei SC", "Helvetica Neue", "Open Sans", Arial, "Hiragino Sans GB", 微软雅黑, STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif;
+    }
+    .header-ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .header-ul > * {
+      margin-bottom: 10px;
+    }
+    .ul-li {
+      font-size: 16px;
+      font-weight: bold;
+      height: 32px;
+      display: inline-block;
+      line-height: 32px;
+      width: 100%;
+      background: #1e2f67;
+      color: white;
+      padding: 0 10px;
+      position: relative;
+      padding-left: 30px;
+      cursor: pointer;
+    }
+    .ul-li::before {
+      content: "";
+      width: 13px;
+      height: 2px;
+      position: absolute;
+      left: 4px;
+      background-color: white;
+      top: 15px;
+      transform: rotate(-45deg);
+      transition: all 400ms;
+    }
+    .ul-li::after {
+      content: "";
+      width: 13px;
+      height: 1px;
+      position: absolute;
+      left: 12px;
+      background-color: white;
+      top: 15px;
+      transform: rotate(45deg);
+      transition: all 300ms;
+    }
+    .ul-li-open::before {
+      transform: rotate(45deg);
+    }
+    .ul-li-open::after {
+      transform: rotate(-45deg);
+    }
+    .opacity {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <ul class="header-ul" id="question-list"></ul>
+  </header>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    const questions = [{
+      title: '数据类型',
+      content: '# Marked in the browser\n\nRendered by **marked**.'
+    }, {
+      title: '数组判断的',
+      content: '# Marked in the browser\n\nRendered by **marked**.'
+    }, {
+      title: '红阿拉了把',
+      content: '# Marked in the browser\n\nRendered by **marked**.'
+    }]
+    function onTitleClick (evt) {
+      const classList = evt.target.classList
+      classList.toggle('ul-li-open')
+      classList.toggle('opacity')
+      const timer = setTimeout(() => {
+        classList.toggle('opacity')
+        clearTimeout(timer)
+      }, 200)
+      const liElement = evt.target.parentNode
+      if (classList.contains('ul-li-open')) {
+        // 添加内容
+        const contentElement = document.createElement('div')
+        liElement.appendChild(contentElement)
+        contentElement.innerHTML = marked(JSON.parse(evt.target.dataset.item).content)
+      } else {
+        liElement.removeChild(liElement.lastChild)
+      }
+    }
+    window.onload = function () {
+      const questionList = document.getElementById('question-list')
+      questions.forEach((item, idx) => {
+        const liElement = document.createElement('li')
+        const spanElement = document.createElement('span')
+        liElement.appendChild(spanElement)
+        spanElement.setAttribute('class', 'ul-li')
+        spanElement.setAttribute('data-item', JSON.stringify(item))
+        spanElement.setAttribute('data-idx', idx)
+        spanElement.onclick = onTitleClick
+        spanElement.innerHTML = item.title
+        questionList.appendChild(liElement)
+      })
+    }
+  </script>
+</body>
+
+</html>
