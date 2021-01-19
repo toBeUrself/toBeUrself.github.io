@@ -9,6 +9,10 @@
       box-sizing: border-box;
       font-family: "PingFang SC", "Lantinghei SC", "Microsoft YaHei", "HanHei SC", "Helvetica Neue", "Open Sans", Arial, "Hiragino Sans GB", 微软雅黑, STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif;
     }
+    html, body {
+      background-color: #010a21;
+      color: #999;
+    }
     .header-ul {
       list-style-type: none;
       padding: 0;
@@ -23,8 +27,7 @@
       display: inline-block;
       line-height: 32px;
       width: 100%;
-      background: #1e2f67;
-      color: white;
+      color: #999;
       padding: 0 10px;
       position: relative;
       padding-left: 30px;
@@ -36,7 +39,7 @@
       height: 2px;
       position: absolute;
       left: 4px;
-      background-color: white;
+      background-color: #999;
       top: 15px;
       transform: rotate(-45deg);
       transition: all 400ms;
@@ -47,7 +50,7 @@
       height: 1px;
       position: absolute;
       left: 12px;
-      background-color: white;
+      background-color: #999;
       top: 15px;
       transform: rotate(45deg);
       transition: all 300ms;
@@ -59,7 +62,7 @@
       transform: rotate(-45deg);
     }
     .opacity {
-      opacity: 0.8;
+      opacity: 0.5;
     }
   </style>
 </head>
@@ -71,8 +74,16 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
     const questions = [{
-      title: '数据类型',
-      content: '# Marked in the browser\n\nRendered by **marked**.'
+      title: 'JS中7中基本的数据类型',
+      content: `
+* \`Number\`
+* \`String\`
+* Boolean
+* Null
+* Undefined
+* Symbol: es6添加，代表创建后独一无二且不可变的数据类型。
+* BigInt: es10添加，是一种数字类型的数据，它可以表示任意精度格式的整数，使用BigInt可以安全地存储和操作大整数，即使这个数已经超出了 Number 能够表示的安全整数范围。
+`
     }, {
       title: '数组判断的',
       content: '# Marked in the browser\n\nRendered by **marked**.'
