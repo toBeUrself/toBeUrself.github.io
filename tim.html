@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>resume template</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <style>
+      * {
+          border: 0;
+      }
+
+      .resume {
+          width: 210mm;
+          height: 297mm;
+          margin: auto;
+          position: absolute;
+          left: 0;
+          right: 0;
+          color: black;
+          font-family: serif;
+          padding: 15px;
+          padding-left: 30px;
+          padding-top: 30px;
+          margin-bottom: 20px;
+          border: 1px solid grey;
+          overflow: hidden;
+      }
+
+      h1,
+      h3 {
+          margin: 0;
+      }
+
+      h1 {
+          margin-bottom: 5px;
+      }
+
+      h3 {
+          margin-bottom: 8px;
+          font-weight: normal;
+      }
+
+      .portrait {
+          width: 150px;
+          height: 150px;
+          border-radius: 150px;
+          margin-right: 60px;
+      }
+
+      .profile {
+          margin-left: -34px;
+          height: 115px;
+      }
+
+      .info {
+          height: 30px;
+      }
+
+      .infoc {
+          float: left;
+          width: 70%;
+          border-top: 30px solid black;
+      }
+
+      .infoi {
+          float: left;
+          border-color: black transparent;
+          border-width: 0 30px 30px 0;
+          border-right-color: white;
+          border-style: solid;
+      }
+
+      .info1 {
+          height: 30px;
+      }
+
+      .infoc1 {
+          float: left;
+          width: 70%;
+          border-top: 30px solid black;
+      }
+
+      .infoi1 {
+          float: left;
+          border-color: transparent black;
+          border-width: 0 0 30px 30px;
+          border-bottom-color: white;
+          border-style: solid;
+      }
+
+      i {
+          display: inline-block;
+          line-height: 32px;
+      }
+
+      span {
+          color: white;
+      }
+
+      .content {
+          margin-top: 20px;
+      }
+
+      h2 {
+          margin: 0;
+          min-width: 98px;
+          float: left;
+          font-size: 20px;
+          text-align: center;
+          height: 32px;
+      }
+
+      .education {
+          float: left;
+          min-width: 635px;
+          line-height: 32px;
+          font-size: 14px;
+      }
+
+      b {
+          margin-right: 20px;
+      }
+
+      .desc {
+          margin-left: 146px;
+          margin-right: 40px;
+          color: black;
+          font-weight: normal;
+          font-size: 15px;
+          font-family: -webkit-pictograph;
+          clear: both;
+          font-size: 14px;
+      }
+
+      p {
+          margin-top: 10px;
+          display: inline-block;
+      }
+
+      .title {
+          color: #2888f3;
+          font-size: large;
+          font-size: 14px;
+      }
+
+      .title-desc {
+        font-size: large;
+        font-size: 14px;
+        color: black;
+        font-weight: bold;
+      }
+
+      .footer-line {
+          border-bottom: 10px solid;
+          background-color: #18aefb;
+          margin-left: -30px;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        background: linear-gradient(to right, #fff, #ecf2f5);
+      }
+
+      .block-span {
+        color: black;
+        font-size: 14px;
+        padding: 0 5px;
+        border: 1px solid #2888f3;
+        border-radius: 2px;
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #2888f3;
+        letter-spacing: 0;
+        line-height: 20px;
+        margin-right: 10px;
+      }
+
+      .font-color {
+        color: black;
+        font-size: 14px;
+      }
+
+      .margin-right {
+        margin-right: 20px;
+      }
+
+      .section {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cicle {
+        min-width: 40px;
+        margin-top: 14px;
+        margin-left: 20px;
+        font-size: 10px;
+      }
+
+      .project {
+        font-size: 14px;
+        padding-top: 6px;
+        line-height: 35px;
+        padding-bottom: 10px;
+      }
+
+      .section-h2 {
+        display: flex;
+        margin-left: -10px;
+        margin-top: 40px;
+        background: #021c35;
+        color: white;
+        min-width: 210px;
+        justify-content: center;
+        transform: skew(30deg);
+      }
+
+      .section-h2-text {
+        transform: skew(-30deg);
+      }
+
+      .section-blank {
+        background: #ecf2f5;
+        min-width: 620px;
+        height: 32px;
+        margin-top: 40px;
+        transform: skew(30deg);
+        line-height: 32px;
+        font-size: 14px;
+        border-bottom: 1px solid #2888f3;
+        box-sizing: border-box;
+      }
+
+      .section-blank span {
+        transform: skew(-30deg);
+        color: black;
+        display: inline-block;
+        margin-left: 20px;
+      }
+
+      .section-header {
+        overflow: hidden;
+        display: flex;
+      }
+
+      .main {
+        font-size: 14px;
+        line-height: 32px;
+        color: black;
+        padding: 10px 40px;
+      }
+
+      .card {
+        position: relative;
+        border: 1px solid #2888f3;
+        margin-top: 30px;
+        border-radius: 2px;
+      }
+
+      .card-title {
+        top: -22px;
+        position: absolute;
+        left: 40px;
+        background: white;
+        font-weight: normal;
+        padding: 0 25px;
+      }
+
+      .card-section {
+        padding: 10px;
+      }
+
+      .card-header {
+        font-size: 14px;
+        line-height: 24px;
+      }
+
+      .mark-color {
+        color: blue;
+        font-weight: bold;
+        font-size: 16px;
+      }
+      .black {
+        color: black;
+      }
+      .gap {
+        margin-right: 20px;
+      }
+      .blue {
+        color: blue;
+      }
+      .normal-span {
+        display: inline-block;
+      }
+  </style>
+</head>
+
+<body>
+  <div class="resume">
+    <div class="header">
+      <img src="./img/tim.jpg" alt="portrait" class="portrait" />
+      <div>
+        <h1>刘泽运</h1>
+        <h3>求职意向：<span class="title-desc">前端开发工程师</span></h3>
+        <div style="margin-bottom: 14px;">
+          <i class="fas fa-phone-volume"></i>
+          <span class="font-color margin-right">电话：18017424747</span>
+          <i class="far fa-envelope-open"></i>
+          <span class="font-color">邮箱：liuzeyunqz@163.com</span>
+        </div>
+        <div>
+          <span class="block-span">2012.09-2016.06</span>
+          <span class="block-span">同济大学</span>
+          <span class="block-span">计算机科学与技术</span>
+          <span class="block-span">本科学历</span>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <header class="section-header">
+        <h2 class="section-h2">
+          <span class="section-h2-text">2019.01-至今</span>
+        </h2>
+        <div class="section-blank">
+          <span class="title">平安普惠企业管理有限公司</span>
+          <span class="title">前端高级开发工程师</span>
+        </div>
+      </header>
+    </div>
+    <div class="card">
+      <h2 class="card-title">搭建npm私服</h2>
+      <main>
+        <div class="card-section">
+          <header class="card-header">
+            <span class="blue">背景及职责：</span>
+            <span class="black">为公司提供发布和下载各种工具库的公共平台，为前端项目打包平台（Jenkins）提供npm包下载服务，解决深圳职场npm私服已知的一些问题与不足。</span>
+          </header>
+          <div class="card-header">
+            <span class="blue">工作总结：</span>
+            <span class="black">（1）对比社区各种开源库，选择并使用verdaccio搭建私服。（2）配置代理，解决公司内部私服需人工手动更新包的问题。（3）新增镜像文件下载接口，解决了如node-sass等需依赖外部二进制文件node包安装失败的问题。</span>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div class="card">
+      <h2 class="card-title">领导React组件库建设</h2>
+      <main>
+        <div class="card-section">
+          <header class="card-header">
+            <span class="blue">背景及职责：</span>
+            <span class="black">公司架构调整前端需求不饱和，前端委员会倡导各团队多尝试React，揽客业务复杂繁多需提炼成组件提高开发效率，完善公司前端基础建设。</span>
+          </header>
+          <div class="card-header">
+            <span class="blue">工作总结：</span>
+            <span class="black">（1）参与组件库视觉规范调研、讨论和制定。（2）建立组件开发仓库并配置打包脚本，lint增量检测，组件初始化脚本，svg图标生成脚本，自定义文档官网。（3）开发任务分工，进度把控，难点攻克，组织代码评审。</span>
+          </div>
+        </div>
+      </main>
+    </div>
+    
+    <div class="section">
+      <header class="section-header">
+        <h2 class="section-h2">
+          <span class="section-h2-text">2017.06-2019.12</span>
+        </h2>
+        <div class="section-blank">
+          <span class="title">花旗金融信息服务(中国)有限公司</span>
+          <span class="title">前端开发工程师</span>
+        </div>
+      </header>
+    </div>
+    <div class="card">
+      <h2 class="card-title">Client Insight CRM</h2>
+      <main>
+        <div class="card-section">
+          <header class="card-header">
+            <span class="blue">背景及职责：</span>
+            <span class="black">为花旗员工提供方便快捷的工具，用于管理和查找客户，活动及合同信息，制定工作计划，会议安排与邀请。</span>
+          </header>
+          <div class="card-header">
+            <span class="blue">工作总结：</span>
+            <span class="black">（1）主要负责MiFID II(欧盟金融工具市场指导)相关模块的开发与后期的维护，同时维护其他模块。（2）参与项目从Angular.js到Angular渐进升级。（3）优化C#对Excel文件处理的性能，提高C#仓库单元测试覆盖率。</span>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div class="card">
+      <h2 class="card-title">Client Insight Mobile</h2>
+      <main>
+        <div class="card-section">
+          <header class="card-header">
+            <span class="blue">背景及职责：</span>
+            <span class="black">Client Insight CRM项目在移动端的尝试，业务的缩减版。</span>
+          </header>
+          <div class="card-header">
+            <span class="blue">工作总结：</span>
+            <span class="black">（1）参与Angular7和Ionic 4大版本重构。（2）主要负责Activity，Contact模块的重构以及整体打包优化。</span>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="section">
+      <header class="section-header">
+        <h2 class="section-h2">
+          <span class="section-h2-text">2016.04-2017-05</span>
+        </h2>
+        <div class="section-blank">
+          <span class="title">上海积成慧集信息技术有限公司</span>
+          <span class="title">前端开发工程师</span>
+        </div>
+      </header>
+    </div>
+    <div class="card">
+      <h2 class="card-title">供水、排水、现维等系统</h2>
+      <main>
+        <div class="card-section">
+          <header class="card-header">
+            <span class="blue">背景及职责：</span>
+            <span class="black">为花旗员工提供方便快捷的工具，用于管理和查找客户，活动及合同信息，制定工作计划，会议安排与邀请。</span>
+          </header>
+          <div class="card-header">
+            <span class="blue">工作总结：</span>
+            <span class="black">主要参与供水综合展示系统中部分模块的重构，设计与实现，并维护系统。 工作内容包括设计符合用户操作体验的页面排版。实现多组合条件的数据检索，根据数据的信息在地图上绘制点位分布、定位及聚类等。用户还可以在地图上进行测绘、打点、画面和横剖面等操作，计算并预估地下对应供水设备的相关数据信息。</span>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="section">
+      <header class="section-header">
+        <h2 class="section-h2">
+          <span class="section-h2-text">技术栈</span>
+        </h2>
+        <div class="section-blank">
+          <span class="title">React · 掌握</span>
+          <span class="title">Vue · 熟悉</span>
+          <span class="title">Node.js · 熟悉</span>
+          <span class="title">Webpack · 熟悉</span>
+          <span class="title">HTTP · 熟悉</span>
+        </div>
+      </header>
+    </div>
+
+  </div>
+</body>
+
+</html>
