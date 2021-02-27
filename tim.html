@@ -15,17 +15,14 @@
 
       .resume {
           width: 210mm;
-          height: 297mm;
           margin: auto;
           position: absolute;
           left: 0;
           right: 0;
           color: black;
           font-family: serif;
-          padding: 15px;
-          padding-left: 30px;
-          border: 1px solid grey;
           overflow: hidden;
+          margin-bottom: 40px;
       }
 
       h1,
@@ -209,12 +206,23 @@
       .section-h2 {
         display: flex;
         margin-left: -10px;
-        margin-top: 20px;
+        margin-top: 25px;
         background: #021c35;
         color: white;
         min-width: 210px;
         justify-content: center;
         transform: skew(30deg);
+      }
+
+      .section-header::before {
+        content: "";
+        height: 32px;
+        width: 30px;
+        background-color: #cbe5f3;
+        position: absolute;
+        left: 0;
+        top: 54%;
+        transform: skew(0deg, 10deg);
       }
 
       .section-h2-text {
@@ -226,7 +234,7 @@
         background: #ecf2f5;
         min-width: 620px;
         height: 32px;
-        margin-top: 20px;
+        margin-top: 25px;
         transform: skew(30deg);
         line-height: 32px;
         font-size: 14px;
@@ -242,8 +250,8 @@
       }
 
       .section-header {
-        overflow: hidden;
         display: flex;
+        position: relative;
       }
 
       .main {
@@ -355,7 +363,7 @@
         <div class="card-section">
           <header class="card-header">
             <span class="blue">技术栈：</span>
-            <span class="black">React、Node.js、SVG、Webpack、Gulp 和 Rollup</span>
+            <span class="black">React、Typescript、Node.js、SVG、Webpack、Gulp 和 Rollup</span>
           </header>
           <header class="card-header">
             <span class="blue">背景及职责：</span>
