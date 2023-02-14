@@ -1,10 +1,13 @@
 .App {
   padding: 12px;
-  margin-top: 66px;
+  padding-top: 66px;
+  backdrop-filter: blur(6px);
+  min-height: 100%;
+  box-sizing: border-box;
 }
 
 body {
-  background-image: url(./imgs/heartwall.jpeg);
+  background-image: url(../public/heartwall.jpeg);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   min-height: 100vh;
@@ -13,4 +16,8 @@ body {
 * {
   letter-spacing: 1px;
   color: white;
+}
+
+#root {
+  height: 100vh;
 }
