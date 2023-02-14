@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import Typed from 'typed.js';
 import './App.css';
 import { getDurationFromNow } from './utils/date';
-import {Howl, Howler} from 'howler';
+// import {Howl, Howler} from 'howler';
 
 const knowday = '20200825';
 const marriageday = '20210507';
@@ -81,19 +81,27 @@ function App() {
     };
   }, []);
 
-  useLayoutEffect(() => {
-    const soundBgm = new Howl({
-      src: ["https://m10.music.126.net/20230214212720/4260d0597fd7bb188657db38aec4869c/ymusic/9ddc/b10e/919e/2ef50b0473f7f2cce3193ed620898cd7.mp3"],
-      loop: true,
-      preload: true,
-    });
+  // useLayoutEffect(() => {
+  //   const soundBgm = new Howl({
+  //     src: ["https://www.xzmp3.com/down/19adb03e470b.mp3"],
+  //     loop: true,
+  //     preload: true,
+  //   });
     
-    // 音频资源 load 之后通过微信桥接触发播放
-    soundBgm.on('load',()=>{
-      window.WeixinJSBridge && window.WeixinJSBridge.invoke('getNetworkType', {},  ()=> {
-        soundBgm.play();
-      }, false);
-    });
+  //   // 音频资源 load 之后通过微信桥接触发播放
+  //   soundBgm.on('load',()=>{
+  //     window.WeixinJSBridge && window.WeixinJSBridge.invoke('getNetworkType', {},  ()=> {
+  //       soundBgm.play();
+  //     }, false);
+  //   });
+  // }, []);
+
+  useEffect(() => {
+    const elementAudio = document.getElementById('audio');
+
+    window.WeixinJSBridge && window.WeixinJSBridge.invoke('getNetworkType', {}, () => {
+      elementAudio.play();
+    }, false);
   }, []);
 
   return (
@@ -102,7 +110,7 @@ function App() {
         <div dangerouslySetInnerHTML={{ __html: element[0]}} />
       ) : <span id="typed"></span>}
 
-      <audio src="https://m10.music.126.net/20230214212720/4260d0597fd7bb188657db38aec4869c/ymusic/9ddc/b10e/919e/2ef50b0473f7f2cce3193ed620898cd7.mp3" autoPlay loop></audio>
+      <audio id="audio" src="https://www.xzmp3.com/down/19adb03e470b.mp3" autoPlay loop></audio>
     </div>
   );
 }
