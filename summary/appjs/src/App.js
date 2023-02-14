@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import Typed from 'typed.js';
 import './App.css';
 import { getDurationFromNow } from './utils/date';
+import {Howl, Howler} from 'howler';
 
 const knowday = '20200825';
 const marriageday = '20210507';
@@ -78,6 +79,21 @@ function App() {
     return () => {
       typedRef.current.destroy();
     };
+  }, []);
+
+  useLayoutEffect(() => {
+    const soundBgm = new Howl({
+      src: ["https://m10.music.126.net/20230214212720/4260d0597fd7bb188657db38aec4869c/ymusic/9ddc/b10e/919e/2ef50b0473f7f2cce3193ed620898cd7.mp3"],
+      loop: true,
+      preload: true,
+    });
+    
+    // 音频资源 load 之后通过微信桥接触发播放
+    soundBgm.on('load',()=>{
+      window.WeixinJSBridge && window.WeixinJSBridge.invoke('getNetworkType', {},  ()=> {
+        soundBgm.play();
+      }, false);
+    });
   }, []);
 
   return (
