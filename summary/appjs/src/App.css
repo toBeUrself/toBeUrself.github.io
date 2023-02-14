@@ -1,0 +1,16 @@
+.App {
+  padding: 12px;
+  margin-top: 66px;
+}
+
+body {
+  background-image: url(./imgs/heartwall.jpeg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  min-height: 100vh;
+}
+
+* {
+  letter-spacing: 1px;
+  color: white;
+}
