@@ -3,3 +3,4 @@
 /v2/node_modules/
 /dist/
 *.js.map
+/pwa/
