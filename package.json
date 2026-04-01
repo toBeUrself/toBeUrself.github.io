@@ -22,7 +22,7 @@
   "license": "ISC",
   "dependencies": {
     "highlight.js": "^9.13.1",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "marked": "^0.5.2",
     "requirejs": "^2.3.6"
   },
